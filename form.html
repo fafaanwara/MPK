@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Aspirasi MPK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --merah: #b92f2f;
+      --merahGelap: #8c1f1f;
+      --merahMuda: #feecec;
+      --merahTransparan: rgba(185, 47, 47, 0.1);
+      --hijau: #25D366;
+      --hijauGelap: #128C7E;
+      --hijauTransparan: rgba(37, 211, 102, 0.1);
+      --hitam: #1a1a1a;
+      --abu: #6c757d;
+      --putih: #ffffff;
+      --radius: 12px;
+      --radius-bulat: 50px;
+      --bayangan: 0 4px 16px rgba(0, 0, 0, .18);
+      --bayangan-hover: 0 8px 25px rgba(0, 0, 0, .25);
+      --transisi: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(223, 222, 222, 0.5)),
+        url('fotbar1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* Overlay untuk kontras */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    /* SECTION ASPIRASI */
+    #aspirasi {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .judul {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--putih);
+      position: relative;
+      padding-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .judul::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--putih);
+      border-radius: var(--radius);
+    }
+
+    /* FORM CONTAINER */
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 8px 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transisi);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--merah), var(--merahGelap));
+      border-radius: 20px 20px 0 0;
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.4),
+        0 12px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    /* FORM GROUP */
+    .form-group {
+      margin-bottom: 2rem;
+      position: relative;
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .form-group:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .form-group:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .form-group:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .form-group:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .form-group:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .form-group:last-child {
+      animation-delay: 0.6s;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.8rem;
+      color: var(--merahGelap);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transisi);
+    }
+
+    label i {
+      color: var(--merah);
+      width: 20px;
+      text-align: center;
+    }
+
+    /* INPUT, TEXTAREA, SELECT */
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid #e9ecef;
+      border-radius: var(--radius);
+      resize: vertical;
+      transition: var(--transisi);
+      font-size: 1rem;
+      background: var(--putih);
+      color: var(--hitam);
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--merah);
+      box-shadow: 0 0 0 3px var(--merahTransparan);
+      transform: translateY(-2px);
+    }
+
+    textarea {
+      min-height: 120px;
+      line-height: 1.5;
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23b92f2f' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      background-size: 12px;
+      padding-right: 3rem;
+      cursor: pointer;
+    }
+
+    /* BUTTON */
+    .btn {
+      background: linear-gradient(135deg, var(--merah), var(--merahGelap));
+      color: var(--putih);
+      padding: 1.2rem 2.5rem;
+      border: none;
+      border-radius: var(--radius-bulat);
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transisi);
+      box-shadow: var(--bayangan);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 12px 30px rgba(185, 47, 47, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn.loading {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .btn.loading::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid var(--putih);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 8px;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-whatsapp:hover {
+      width: 200px;
+      border-radius: 50px;
+      justify-content: flex-start;
+      padding-left: 20px;
+    }
+
+    .btn-whatsapp:hover span {
+      display: inline-block;
+      margin-left: 10px;
+      opacity: 1;
+    }
+
+    .btn-whatsapp i {
+      font-size: 28px;
+    }
+
+    .btn-whatsapp span {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      transform: translateY(10px);
+    }
+
+    .btn-whatsapp:hover .whatsapp-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+
+    /* ALERT */
+    .alert {
+      padding: 1.2rem 1.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      display: none;
+      animation: slideDown 0.5s ease;
+      font-weight: 500;
+      border-left: 4px solid;
+      box-shadow: var(--bayangan);
+    }
+
+    .alert.sukses {
+      background: #f0fff4;
+      color: #22543d;
+      border-left-color: #38a169;
+    }
+
+    .alert.error {
+      background: #fff5f5;
+      color: #742a2a;
+      border-left-color: #e53e3e;
+    }
+
+    /* CHARACTER COUNTER */
+    .char-counter {
+      font-size: 0.8rem;
+      color: var(--abu);
+      text-align: right;
+      margin-top: 0.5rem;
+      transition: var(--transisi);
+    }
+
+    .char-counter.warning {
+      color: #e53e3e;
+      font-weight: 600;
+    }
+
+    /* ==================== NOTIFIKASI SUKSES ==================== */
+    .success-notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      background: white;
+      border-radius: 15px;
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.15),
+        0 5px 20px rgba(185, 47, 47, 0.1);
+      border-left: 5px solid #38a169;
+      transform: translateX(400px);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      max-width: 400px;
+      overflow: hidden;
+    }
+
+    .success-notification.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .success-notification.hide {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+
+    .notification-content {
+      display: flex;
+      align-items: flex-start;
+      padding: 1.5rem;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .notification-icon {
+      font-size: 2rem;
+      color: #38a169;
+      flex-shrink: 0;
+      animation: bounce 0.6s ease;
+    }
+
+    .notification-text h3 {
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .notification-text p {
+      color: #4a5568;
+      margin: 0;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .notification-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #a0aec0;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .notification-close:hover {
+      color: #718096;
+      background: #f7fafc;
+      transform: rotate(90deg);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      53%,
+      80%,
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      40%,
+      43% {
+        transform: translate3d(0, -8px, 0);
+      }
+
+      70% {
+        transform: translate3d(0, -4px, 0);
+      }
+
+      90% {
+        transform: translate3d(0, -2px, 0);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* Progress bar untuk notifikasi */
+    .success-notification::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38a169, #48bb78);
+      animation: progress 5s linear forwards;
+    }
+
+    @keyframes progress {
+      from {
+        width: 100%;
+      }
+
+      to {
+        width: 0%;
+      }
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+        background-attachment: scroll;
+      }
+
+      .judul {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .btn-whatsapp {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .whatsapp-tooltip {
+        display: none;
+      }
+
+      .success-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        transform: translateY(-100px);
+      }
+
+      .success-notification.show {
+        transform: translateY(0);
+      }
+
+      .success-notification.hide {
+        transform: translateY(-100px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .judul {
+        font-size: 1.8rem;
+      }
+
+      .form-container {
+        padding: 1.5rem 1rem;
+      }
+
+      .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+      }
+
+      .btn-whatsapp {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
+      .btn-whatsapp span {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      .btn-whatsapp i {
+        margin-right: 0;
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ASPIRASI -->
+  <section id="aspirasi">
+    <h2 class="judul">Formulir Aspirasi</h2>
+    <div id="alert" class="alert"></div>
+    <div class="form-container">
+      <form id="formAspirasi">
+        <div class="form-group">
+          <label for="nama"><i class="fas fa-user"></i> Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap kamu" required>
+        </div>
+        <div class="form-group">
+          <label for="kelas"><i class="fas fa-graduation-cap"></i> Kelas / Jurusan</label>
+          <select id="kelas" name="kelas" required>
+            <option value="">-- Pilih Kelas --</option>
+            <option>X AKL 1</option>
+            <option>X AKL 2</option>
+            <option>X AKL 3</option>
+            <option>X AKL 4</option>
+            <option>X MPLB 1</option>
+            <option>X MPLB 2</option>
+            <option>X MPLB 3</option>
+            <option>X PM 1</option>
+            <option>X PM 2</option>
+            <option>X PM 3</option>
+            <option>X DKV 1</option>
+            <option>X DKV 2</option>
+            <option>X DKV 3</option>
+            <option>X TJKT 1</option>
+            <option>X TJKT 2</option>
+            <option>X PPLG</option>
+            <option>XI AK 1</option>
+            <option>XI AK 2</option>
+            <option>XI AK 3</option>
+            <option>XI AK 4</option>
+            <option>XI MP 1</option>
+            <option>XI MP 2</option>
+            <option>XI MP 3</option>
+            <option>XI BR 1</option>
+            <option>XI BR 2</option>
+            <option>XI BD</option>
+            <option>XI DKV 1</option>
+            <option>XI DKV 2</option>
+            <option>XI DKV 3</option>
+            <option>XI TKJ 1</option>
+            <option>XI TKJ 2</option>
+            <option>XI RPL</option>
+            <option>XII AK 1</option>
+            <option>XII AK 2</option>
+            <option>XII AK 3</option>
+            <option>XII AK 4</option>
+            <option>XII MP 1</option>
+            <option>XII MP 2</option>
+            <option>XII MP 3</option>
+            <option>XII BR 1</option>
+            <option>XII BR 2</option>
+            <option>XII BD</option>
+            <option>XII DKV 1</option>
+            <option>XII DKV 2</option>
+            <option>XII DKV 3</option>
+            <option>XII TKJ 1</option>
+            <option>XII TKJ 2</option>
+            <option>XII RPL</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="kategori"><i class="fas fa-tag"></i> Kategori</label>
+          <select id="kategori" name="kategori" required>
+            <option value="">-- Pilih Kategori --</option>
+            <option>Event MPK/OSIS</option>
+            <option>Ekstrakurikuler</option>
+            <option>Lingkungan Kelas</option>
+            <option>Pengurus MPK/OSIS</option>
+            <option>Sarana Prasarana</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="isi"><i class="fas fa-edit"></i> Isi Aspirasi</label>
+          <textarea id="isi" name="isi" placeholder="Jelaskan aspirasi kamu secara singkat dan jelas..."
+            required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="saran"><i class="fas fa-lightbulb"></i> Saran (opsional)</label>
+          <textarea id="saran" name="saran"
+            placeholder="Jika ada, tuliskan saran atau ide kreatif yang kamu usulkan..."></textarea>
+        </div>
+        <button type="submit" class="btn">
+          <i class="fas fa-paper-plane"></i> Kirim Aspirasi
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- WhatsApp Floating Button -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/6281779522854?text=Halo%2C%20saya%20ingin%20mengirim%20aspirasi%20atau%20bertanya%20tentang%20kegiatan%20sekolah..."
+      class="btn-whatsapp" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      <span>Tanya Admin</span>
+      <div class="whatsapp-tooltip">
+        Klik untuk bertanya langsung ke Admin MPK
+      </div>
+    </a>
+  </div>
+
+  <script>
+    // Form Aspirasi Handler
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('formAspirasi');
+      const alertBox = document.getElementById('alert');
+
+      // Character counter untuk textarea
+      const isiTextarea = document.getElementById('isi');
+      const saranTextarea = document.getElementById('saran');
+
+      // Tambahkan character counter
+      if (isiTextarea) {
+        createCharCounter(isiTextarea, 1000);
+      }
+
+      if (saranTextarea) {
+        createCharCounter(saranTextarea, 500);
+      }
+
+      // Form submission handler
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // Tampilkan loading state
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i class="fas fa-spinner"></i> Mengirim Aspirasi...';
+          submitBtn.classList.add('loading');
+          submitBtn.disabled = true;
+
+          // Validasi form
+          const nama = form.nama.value.trim();
+          const kelas = form.kelas.value;
+          const kategori = form.kategori.value;
+          const isi = form.isi.value.trim();
+
+          if (!nama || !kelas || !kategori || !isi) {
+            showAlert('❌ Harap lengkapi semua field yang wajib diisi!', 'error');
+            resetButton(submitBtn, originalText);
+            return;
+          }
+
+          // Kirim data ke Google Forms
+          sendToGoogleForms(form);
+        });
+      }
+
+      // ==================== FUNGSI KIRIM KE GOOGLE FORMS ====================
+      function sendToGoogleForms(form) {
+        // URL Google Forms - SESUAIKAN DENGAN URL ANDA
+        const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfwwy2TJW88kYcKFSkRKTwhvo_QIZ_MhjvRLtmhPOPRykOJWQ/formResponse";
+
+        // Data yang akan dikirim - SESUAIKAN DENGAN ENTRY ID YANG BENAR
+        const formData = new FormData();
+
+        // Entry IDs - SESUAIKAN DENGAN FORM ANDA
+        formData.append('entry.196891814', form.kelas.value);              // Kelas
+        formData.append('entry.1038452952', form.nama.value.trim());       // Nama
+        formData.append('entry.1318660918', form.kategori.value);          // Kategori
+        formData.append('entry.369508031', form.isi.value.trim());         // Isi Aspirasi
+        formData.append('entry.404239016', form.saran.value.trim());      // Saran
+
+        console.log('Mengirim data ke Google Forms:', {
+          nama: form.nama.value.trim(),
+          kelas: form.kelas.value,
+          kategori: form.kategori.value,
+          isi: form.isi.value.trim(),
+          saran: form.saran.value.trim()
+        });
+
+        // Kirim menggunakan fetch API
+        fetch(googleFormURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        })
+          .then(() => {
+            console.log('✅ Data berhasil dikirim ke Google Forms');
+
+            // Simpan ke LocalStorage sebagai backup
+            const data = {
+              nama: form.nama.value.trim(),
+              kelas: form.kelas.value,
+              kategori: form.kategori.value,
+              isi: form.isi.value.trim(),
+              saran: form.saran.value.trim(),
+              waktu: new Date().toLocaleString('id-ID'),
+              timestamp: new Date().getTime()
+            };
+
+            saveToLocalStorage(data);
+
+            // Tampilkan notifikasi sukses
+            showSuccessNotification();
+
+            // Reset form
+            form.reset();
+
+            // Reset character counters
+            resetCharCounters();
+          })
+          .catch((error) => {
+            console.error('❌ Error mengirim ke Google Forms:', error);
+            showAlert('❌ Gagal mengirim aspirasi. Silakan coba lagi atau hubungi admin.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = '<i class="fas fa-paper-plane"></i> Kirim Aspirasi';
+            resetButton(submitBtn, originalText);
+          });
+      }
+
+      // ==================== FUNGSI BANTU ====================
+
+      function createCharCounter(textarea, maxLength) {
+        const counter = document.createElement('div');
+        counter.className = 'char-counter';
+        counter.textContent = `0/${maxLength}`;
+        textarea.parentNode.appendChild(counter);
+
+        textarea.addEventListener('input', function () {
+          const length = this.value.length;
+          counter.textContent = `${length}/${maxLength}`;
+
+          if (length > maxLength * 0.9) {
+            counter.classList.add('warning');
+          } else {
+            counter.classList.remove('warning');
+          }
+
+          if (length > maxLength) {
+            this.value = this.value.substring(0, maxLength);
+            counter.textContent = `${maxLength}/${maxLength}`;
+            showAlert(`❌ Maksimal ${maxLength} karakter!`, 'error');
+          }
+        });
+      }
+
+      function resetCharCounters() {
+        const counters = document.querySelectorAll('.char-counter');
+        counters.forEach(counter => {
+          counter.textContent = `0/${counter.textContent.split('/')[1]}`;
+          counter.classList.remove('warning');
+        });
+      }
+
+      function saveToLocalStorage(data) {
+        try {
+          let db = JSON.parse(localStorage.getItem('aspirasiMPK') || '[]');
+
+          // Tambah ID unik
+          data.id = Date.now().toString();
+
+          db.push(data);
+          localStorage.setItem('aspirasiMPK', JSON.stringify(db));
+
+          console.log('✅ Data tersimpan di localStorage:', data);
+        } catch (error) {
+          console.error('❌ Error menyimpan data:', error);
+          showAlert('❌ Terjadi kesalahan saat menyimpan data.', 'error');
+        }
+      }
+
+      function showAlert(message, type) {
+        if (alertBox) {
+          alertBox.textContent = message;
+          alertBox.className = `alert ${type}`;
+          alertBox.style.display = 'block';
+
+          setTimeout(() => {
+            alertBox.style.display = 'none';
+          }, 5000);
+        }
+      }
+
+      function resetButton(button, originalHtml) {
+        button.innerHTML = originalHtml;
+        button.classList.remove('loading');
+        button.disabled = false;
+      }
+
+      // ==================== NOTIFIKASI SUKSES ====================
+      function showSuccessNotification() {
+        console.log('Menampilkan notifikasi...');
+
+        // Hapus notifikasi sebelumnya jika ada
+        const existingNotification = document.querySelector('.success-notification');
+        if (existingNotification) {
+          existingNotification.remove();
+        }
+
+        // Buat elemen notifikasi
+        const notification = document.createElement('div');
+        notification.className = 'success-notification';
+        notification.innerHTML = `
+          <div class="notification-content">
+            <div class="notification-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-text">
+              <h3>🎉 Aspirasi Terkirim!</h3>
+              <p>Terima kasih telah menyampaikan aspirasi Anda. Tim MPK akan menindaklanjuti segera.</p>
+            </div>
+            <button class="notification-close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        `;
+
+        // Tambahkan ke body
+        document.body.appendChild(notification);
+
+        // Trigger animation setelah DOM update
+        setTimeout(() => {
+          notification.classList.add('show');
+          console.log('Notifikasi ditampilkan');
+        }, 100);
+
+        // Auto close setelah 5 detik
+        const autoClose = setTimeout(() => {
+          closeNotification(notification);
+        }, 5000);
+
+        // Close button event
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.addEventListener('click', () => {
+          clearTimeout(autoClose);
+          closeNotification(notification);
+        });
+
+        // Close saat klik outside
+        notification.addEventListener('click', (e) => {
+          if (e.target === notification) {
+            clearTimeout(autoClose);
+            closeNotification(notification);
+          }
+        });
+      }
+
+      function closeNotification(notification) {
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }
+    });
+  </script>
+</body>
+
+</html>

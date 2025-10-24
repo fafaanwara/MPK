@@ -1,0 +1,800 @@
+ :root {
+     --merah: #b92f2f;
+     --merahGelap: #8c1f1f;
+     --merahMuda: #feecec;
+     --merahTransparan: rgba(185, 47, 47, 0.1);
+     --hitam: #1a1a1a;
+     --abu: #6c757d;
+     --putih: #ffffff;
+     --radius: 12px;
+     --radius-bulat: 50px;
+     --bayangan: 0 4px 16px rgba(0, 0, 0, .18);
+     --bayangan-hover: 0 8px 25px rgba(0, 0, 0, .25);
+     --transisi: all 0.3s ease;
+ }
+
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+     color: var(--hitam);
+ }
+
+ html {
+     scroll-behavior: smooth;
+ }
+
+ body {
+     background: var(--putih);
+     line-height: 1.6;
+     overflow-x: hidden;
+ }
+
+ img {
+     max-width: 100%;
+     display: block;
+ }
+
+ a {
+     text-decoration: none;
+ }
+
+ /* NAVIGASI */
+ nav {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     background-color: transparent;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 1rem 1.5rem;
+     z-index: 1000;
+     transition: background-color 0.4s ease, box-shadow 0.4s ease;
+ }
+
+ nav.scrolled {
+     background-color: rgba(255, 255, 255, 1);
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+ }
+
+ nav img {
+     width: 50px;
+     height: 50px;
+     border-radius: 100%;
+     border: white 1.5px solid;
+     margin: 0;
+ }
+
+ nav ul {
+     list-style: none;
+     display: flex;
+     gap: 1rem;
+     background-color: rgba(255, 255, 255, 0.5);
+     padding: 5px;
+     border-radius: 50px;
+     transition: background-color 0.4s ease, box-shadow 0.4s ease;
+ }
+
+ nav a {
+     color: var(--hitam);
+     font-weight: 600;
+     padding: .5rem .8rem;
+     border-radius: 50px;
+     transition: var(--transisi);
+     position: relative;
+     text-decoration: none;
+     /* Tambahkan ini */
+     display: inline-block;
+     /* Tambahkan ini untuk positioning yang better */
+ }
+
+ nav a:hover {
+     background-color: rgba(141, 94, 94, 0.228);
+ }
+
+ /* Efek garis bawah dari kiri ke kanan */
+ nav a::after {
+     content: '';
+     position: absolute;
+     width: 0;
+     height: 2px;
+     bottom: 0;
+     left: 10%;
+     background-color: var(--merahGelap);
+     transition: width 0.3s ease;
+ }
+
+ nav a:hover::after {
+     width: 80%;
+     align-items: center;
+ }
+
+ #menuToggle {
+     display: none;
+ }
+
+ /* HERO */
+ .hero {
+     min-height: 100vh;
+     max-width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     text-align: left;
+     background-size: cover;
+     color: var(--putih);
+     padding: 2rem 5%;
+     position: relative;
+     overflow: hidden;
+     background-position: center;
+     background-repeat: no-repeat;
+     transition: background-image 1s ease-in-out, filter 1s ease-in-out;
+ }
+
+ .hero.fade::before {
+     filter: blur(20px);
+ }
+
+ .hero::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     opacity: 0.3;
+ }
+
+ .hero::after {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.7);
+     /* ubah angka 0.4 -> makin besar makin gelap */
+     z-index: 0;
+ }
+
+ .hero-content {
+     position: relative;
+     z-index: 2;
+     max-width: 600px;
+     flex: 1;
+ }
+
+ .hero h1 {
+     font-size: 2.8rem;
+     margin-bottom: 0.5rem;
+     margin-top: 4rem;
+     animation: fadeDown .8s ease;
+     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+     text-align: left;
+     color: var(--putih);
+     line-height: 1.2;
+ }
+
+ .hero p,
+ p i,
+ p b {
+     font-size: 1.1rem;
+     margin-bottom: 1.5rem;
+     line-height: 1.8;
+     text-align: left;
+     animation: fadeUp .8s ease .2s both;
+     color: var(--putih);
+     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+ }
+
+ .hero-image {
+     flex: 1;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 1;
+ }
+
+ .hero img {
+     max-width: 300px;
+     height: 300px;
+     border: 4px solid var(--putih);
+     border-radius: 100%;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+     transition: transform 0.4s ease, box-shadow 0.4s ease;
+     animation: float 3s ease-in-out infinite;
+     z-index: 2;
+ }
+
+ .hero img:hover {
+     box-shadow: 0 10px 100px rgba(255, 255, 255, 0.35);
+ }
+
+ @keyframes float {
+
+     0%,
+     100% {
+         transform: translateY(0);
+     }
+
+     50% {
+         transform: translateY(-10px);
+     }
+ }
+
+ .btn {
+     background: var(--putih);
+     color: var(--merah);
+     padding: .85rem 2.2rem;
+     border: none;
+     border-radius: var(--radius-bulat);
+     font-weight: bold;
+     cursor: pointer;
+     transition: var(--transisi);
+     box-shadow: var(--bayangan);
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     font-size: 1rem;
+     margin: 10px;
+ }
+
+ .btn:hover {
+     transform: translateY(-5px);
+     box-shadow: var(--bayangan-hover);
+ }
+
+ .btn-outline {
+     background: transparent;
+     color: var(--putih);
+     border: 2px solid var(--putih);
+ }
+
+ .btn-outline:hover {
+     background: var(--putih);
+     color: var(--merah);
+ }
+
+ @keyframes fadeDown {
+     from {
+         opacity: 0;
+         transform: translateY(-30px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ @keyframes fadeUp {
+     from {
+         opacity: 0;
+         transform: translateY(30px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+     }
+
+     to {
+         opacity: 1;
+     }
+ }
+
+ /* KONTEN */
+ section {
+     padding: 5rem 1.5rem;
+     max-width: 1200px;
+     margin: auto;
+ }
+
+ .judul {
+     text-align: center;
+     font-size: 2.2rem;
+     margin-bottom: 3rem;
+     color: var(--merahGelap);
+     position: relative;
+     padding-bottom: 1rem;
+ }
+
+ .judul::after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 80px;
+     height: 4px;
+     background: var(--merah);
+     border-radius: var(--radius);
+ }
+
+ .kartu {
+     background: var(--putih);
+     border-radius: var(--radius);
+     padding: 2rem;
+     box-shadow: var(--bayangan);
+     margin-bottom: 1.8rem;
+     transition: var(--transisi);
+     border-left: 4px solid var(--merah);
+ }
+
+ .kartu:hover {
+     transform: translateY(-5px);
+     box-shadow: var(--bayangan-hover);
+ }
+
+ .kartu h4 {
+     color: var(--merah);
+     margin-bottom: .8rem;
+     font-size: 1.3rem;
+     gap: 10px;
+     text-align: center;
+
+ }
+
+ .kartu p,
+ .kartu ul {
+     margin-bottom: .5rem;
+     text-align: justify;
+ }
+
+ .kartu ul {
+     margin-left: 1.5rem;
+ }
+
+ .kartu li {
+     margin-bottom: .5rem;
+ }
+
+ .kartu img {
+     border-radius: var(--radius);
+ }
+
+ /* sa LAYOUT */
+ .grid-container {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 1.8rem;
+ }
+
+ .grid-container1 {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 0.5rem;
+ }
+
+ .grid-container1 img {
+     border-radius: 1px;
+ }
+
+ /* galeri */
+
+ /* KONTAK */
+ .kontak-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 1.5rem;
+ }
+
+ .kontak-item {
+     display: flex;
+     align-items: center;
+     gap: 15px;
+     padding: 1.5rem;
+     background: var(--putih);
+     border-radius: var(--radius);
+     box-shadow: var(--bayangan);
+     transition: var(--transisi);
+ }
+
+ .kontak-item:hover {
+     transform: translateY(-5px);
+     box-shadow: var(--bayangan-hover);
+ }
+
+ .kontak-icon {
+     width: 50px;
+     height: 50px;
+     background: var(--putih);
+     color: var(--putih);
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1.3rem;
+     border: black 1.5px solid;
+ }
+
+ .kontak-info h4 {
+     margin-bottom: .3rem;
+     color: var(--merah);
+ }
+
+ .kontak-info a {
+     color: var(--hitam);
+     transition: var(--transisi);
+ }
+
+ .kontak-icon i {
+     color: var(--putih);
+ }
+
+ .kontak-icon1 i {
+     color: var(--hitam);
+ }
+
+ .layanan h5 a {
+     color: rgba(5, 5, 222, 0.546);
+ }
+
+ .read-more {
+     display: flex;
+     align-items: center;
+     /* sejajarkan vertikal */
+     gap: 0.4rem;
+     /* jarak teks dan ikon */
+     text-decoration: none;
+     font-weight: 20px;
+     color: #005aa8cf;
+     margin-top: 1rem;
+ }
+
+ /* FOOTER */
+ footer {
+     background: var(--putih);
+     color: var(--hitam);
+     text-align: center;
+     padding: 1rem;
+     font-size: .95rem;
+     box-shadow: 0 1px 2px black;
+ }
+
+ .footer-content {
+     max-width: 1200px;
+     margin: 0 auto;
+     display: flex;
+     flex-direction: column;
+     gap: 0.4rem;
+ }
+
+ .social-links {
+     display: flex;
+     justify-content: center;
+     gap: 1rem;
+     padding-bottom: 0.1rem;
+ }
+
+ .social-links a {
+     width: 40px;
+     height: 40px;
+     background: var(--putih);
+     color: var(--merah);
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transition: var(--transisi);
+     border: var(--hitam) 1.5px solid;
+ }
+
+ .social-links a:hover {
+     transform: translateY(-3px);
+ }
+
+ /* ==================== */
+ /* SCROLL HORIZONTAL - TERPISAH */
+ /* ==================== */
+ .horizontal-section-wrapper {
+     position: relative;
+     height: auto;
+     min-width: 100%;
+     overflow: hidden;
+     background: var(--merahMuda);
+ }
+
+ .horizontal-container {
+     display: flex;
+     position: relative;
+     top: 0;
+     left: 0;
+     width: 500vw;
+     height: 100vh;
+     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ }
+
+ .horizontal-panel {
+     flex: 0 0 100vw;
+     height: auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     font-size: 3rem;
+     font-weight: bold;
+     color: white;
+     position: relative;
+     overflow: hidden;
+     padding: 2rem;
+
+     /* bg img */
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+ }
+
+ .horizontal-panel.satu {
+     background-image: url(fotbar1.jpg);
+ }
+
+ .horizontal-panel.dua {
+     background-image: url(fotbar2.jpg);
+ }
+
+ .horizontal-panel.tiga {
+     background-image: url(fotbar2.jpg);
+ }
+
+ .horizontal-panel.empat {
+     background-image: url(fotbar1.jpg);
+ }
+
+ .horizontal-panel.lima {
+     background-image: url(fotbar3.jpg);
+ }
+
+ .horizontal-content {
+     text-align: center;
+     z-index: 2;
+     position: relative;
+     max-width: 80%;
+ }
+
+ .horizontal-title {
+     font-size: 3.5rem;
+     margin-bottom: 1rem;
+     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ .horizontal-subtitle {
+     font-size: 1.5rem;
+     font-weight: normal;
+     margin-bottom: 2rem;
+     line-height: 1.6;
+ }
+
+ .horizontal-btn {
+     padding: 12px 30px;
+     background: rgba(255, 255, 255, 0.2);
+     border: 2px solid white;
+     color: white;
+     font-size: 1rem;
+     font-weight: bold;
+     border-radius: 30px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     text-decoration: none;
+     display: inline-block;
+ }
+
+ .horizontal-btn:hover {
+     background: white;
+     color: #333;
+ }
+
+ .horizontal-nav {
+     position: absolute;
+     bottom: 30px;
+     left: 0;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     z-index: 10;
+     gap: 10px;
+ }
+
+ .horizontal-dot {
+     width: 12px;
+     height: 12px;
+     border-radius: 50%;
+     background: rgba(255, 255, 255, 0.5);
+     cursor: pointer;
+     transition: all 0.3s ease;
+ }
+
+ .horizontal-dot.active {
+     background: white;
+     transform: scale(1.3);
+ }
+
+ .horizontal-arrow {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     background: rgba(255, 255, 255, 0.2);
+     color: white;
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     z-index: 10;
+     transition: all 0.3s ease;
+     font-size: 1.5rem;
+ }
+
+ .horizontal-arrow:hover {
+     background: rgba(255, 255, 255, 0.4);
+ }
+
+ .horizontal-arrow.left {
+     left: 20px;
+ }
+
+ .horizontal-arrow.right {
+     right: 20px;
+ }
+
+ /* RESPONSIVE */
+ @media(max-width:992px) {
+     .hero h1 {
+         font-size: 2.4rem;
+         text-align: center;
+
+     }
+
+     .hero {
+         flex-direction: column;
+         text-align: center;
+         padding-top: 5rem;
+     }
+
+     .hero-content {
+         text-align: center;
+         margin-bottom: 2rem;
+     }
+
+     .hero p {
+         text-align: center;
+     }
+
+     section {
+         padding: 4rem 1.5rem;
+     }
+
+     .horizontal-title {
+         font-size: 2.8rem;
+     }
+ }
+
+ @media(max-width:768px) {
+     nav {
+         padding: .7rem 1.2rem;
+     }
+
+     .brand {
+         font-size: 1.1rem;
+     }
+
+     nav ul {
+         position: absolute;
+         top: 100%;
+         left: 0;
+         right: 0;
+         background: var(--merah);
+         flex-direction: column;
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height .4s ease;
+         padding: 0;
+         box-shadow: var(--bayangan);
+     }
+
+     nav ul.show {
+         max-height: 400px;
+         padding: 1rem 0;
+     }
+
+     nav ul li {
+         text-align: center;
+     }
+
+     nav ul li a {
+         display: block;
+         padding: .8rem 1rem;
+     }
+
+     #menuToggle {
+         display: block;
+     }
+
+     .hero h1 {
+         font-size: 2rem;
+     }
+
+     .hero p {
+         font-size: 1.1rem;
+     }
+
+     .judul {
+         font-size: 1.8rem;
+     }
+
+     .kartu {
+         padding: 1.5rem;
+     }
+
+     .horizontal-title {
+         font-size: 2.2rem;
+     }
+
+     .horizontal-subtitle {
+         font-size: 1.2rem;
+     }
+
+     .horizontal-arrow {
+         width: 40px;
+         height: 40px;
+         font-size: 1.2rem;
+     }
+
+     .horizontal-arrow.left {
+         left: 10px;
+     }
+
+     .horizontal-arrow.right {
+         right: 10px;
+     }
+ }
+
+ @media(max-width:576px) {
+     .hero h1 {
+         font-size: 1.8rem;
+     }
+
+     .hero p {
+         font-size: 1rem;
+     }
+
+     .btn {
+         padding: .7rem 1.5rem;
+         font-size: .9rem;
+     }
+
+     section {
+         padding: 3rem 1rem;
+     }
+
+     .judul {
+         font-size: 1.6rem;
+     }
+
+     .kontak-item {
+         flex-direction: column;
+         text-align: center;
+     }
+
+     .horizontal-title {
+         font-size: 1.8rem;
+     }
+
+     .horizontal-subtitle {
+         font-size: 1rem;
+     }
+ }
+
+ /* form */
