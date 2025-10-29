@@ -682,83 +682,51 @@
  }
 
  @media(max-width:768px) {
-     nav {
-         padding: .7rem 1.2rem;
+     #particles-js {
+         position: fixed;
+         width: 100%;
+         height: 100%;
+         z-index: -1;
+         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
      }
+ }
 
-     .brand {
-         font-size: 1.1rem;
-     }
+ .hero h1 {
+     font-size: 2rem;
+ }
 
-     nav ul {
-         position: absolute;
-         top: 100%;
-         left: 0;
-         right: 0;
-         background: var(--merah);
-         flex-direction: column;
-         max-height: 0;
-         overflow: hidden;
-         transition: max-height .4s ease;
-         padding: 0;
-         box-shadow: var(--bayangan);
-     }
+ .hero p {
+     font-size: 1.1rem;
+ }
 
-     nav ul.show {
-         max-height: 400px;
-         padding: 1rem 0;
-     }
+ .judul {
+     font-size: 1.8rem;
+ }
 
-     nav ul li {
-         text-align: center;
-     }
+ .kartu {
+     padding: 1rem;
+ }
 
-     nav ul li a {
-         display: block;
-         padding: .8rem 1rem;
-     }
+ .horizontal-title {
+     font-size: 2.2rem;
+ }
 
-     #menuToggle {
-         display: block;
-     }
+ .horizontal-subtitle {
+     font-size: 1.2rem;
+ }
 
-     .hero h1 {
-         font-size: 2rem;
-     }
+ .horizontal-arrow {
+     width: 40px;
+     height: 40px;
+     font-size: 1.2rem;
+ }
 
-     .hero p {
-         font-size: 1.1rem;
-     }
+ .horizontal-arrow.left {
+     left: 10px;
+ }
 
-     .judul {
-         font-size: 1.8rem;
-     }
-
-     .kartu {
-         padding: 1.5rem;
-     }
-
-     .horizontal-title {
-         font-size: 2.2rem;
-     }
-
-     .horizontal-subtitle {
-         font-size: 1.2rem;
-     }
-
-     .horizontal-arrow {
-         width: 40px;
-         height: 40px;
-         font-size: 1.2rem;
-     }
-
-     .horizontal-arrow.left {
-         left: 10px;
-     }
-
-     .horizontal-arrow.right {
-         right: 10px;
-     }
+ .horizontal-arrow.right {
+     right: 10px;
  }
 
  @media(max-width:576px) {
