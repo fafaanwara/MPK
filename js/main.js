@@ -187,9 +187,9 @@
     const hero = document.getElementById('hero');
 
     const images = [
-      'fotbar1.jpg',
-      'fotbar2.jpg',
-      'fotbar3.jpg'
+      '../image/fotbar1.jpg',
+      '../image/fotbar2.jpg',
+      '..image/fotbar3.jpg'
     ];
 
     let index = 0;

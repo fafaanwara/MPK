@@ -536,23 +536,23 @@
  }
 
  .horizontal-panel.satu {
-     background-image: url(fotbar1.jpg);
+     background-image: url(../image/fotbar1.jpg);
  }
 
  .horizontal-panel.dua {
-     background-image: url(fotbar2.jpg);
+     background-image: url(../image/fotbar2.jpg);
  }
 
  .horizontal-panel.tiga {
-     background-image: url(fotbar2.jpg);
+     background-image: url(../image/fotbar2.jpg);
  }
 
  .horizontal-panel.empat {
-     background-image: url(fotbar1.jpg);
+     background-image: url(../image/fotbar1.jpg);
  }
 
  .horizontal-panel.lima {
-     background-image: url(fotbar3.jpg);
+     background-image: url(../image/fotbar3.jpg);
  }
 
  .horizontal-content {
