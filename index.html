@@ -1,277 +1,299 @@
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="id">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum MPK SMKN 1 Dukuhturi</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400&display=swap"
-      rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum MPK SMKN 1 Dukuhturi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
 
-  <body>
-    <!-- NAVIGASI -->
-    <nav>
-      <div class="brand">
-        <img src="../image/ini_logo_MPK.jpg" alt="MPK SMKN 1 Dukuhturi">
+<body>
+  <div class="hero-image-preload">
+    <img src="image/1home.jpg" alt="MPK SMKN 1 Dukuhturi">
+    <img src="image/2home.jpg" alt="MPK SMKN 1 Dukuhturi">
+    <img src="image/3home.jpg" alt="MPK SMKN 1 Dukuhturi">
+  </div>
+
+  <!-- Particles.js Container -->
+  <div id="particles-js"></div>
+
+  <!-- NAVIGASI -->
+  <nav>
+    <div class="brand">
+      <img src="image/logompk.jpg" alt="MPK SMKN 1 Dukuhturi">
+    </div>
+    <button id="menuToggle"><i class="fas fa-bars"></i></button>
+    <ul id="navMenu">
+      <li><a href="#hero"><i class="fa-solid fa-house"></i> Beranda</a></li>
+      <li><a href="#tentang"><i class="fas fa-info-circle"></i> Tentang</a></li>
+      <li><a href="#layanan"><i class="fas fa-cogs"></i> Layanan</a></li>
+      <li><a href="#galeri"><i class="fa-solid fa-image"></i> Galeri</a></li>
+      <li><a href="#kontak"><i class="fas fa-envelope"></i> Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1>Forum MPK SMKN 1 Dukuhturi</h1>
+      <p><b>Selamat datang di Website Resmi Majelis Perwakilan Kelas (MPK) SMKN 1 Dukuhturi.</b> Website ini dibuat
+        sebagai sarana informasi, komunikasi, dan inspirasi bagi seluruh siswa. Bersama, kita wujudkan MPK yang aktif,
+        peduli, dan berdaya!
+      </p>
+      <p><i>"Satu visi, Satu misi, Satu aksi, Salurkan Aspirasi"</i></p>
+      <div class="hero-buttons">
+        <a href="form.html" class="btn"><i class="fas fa-paper-plane"></i> Sampaikan Aspirasi</a>
+        <a href="#tentang" class="btn btn-outline"><i class="fas fa-book-open"></i> Pelajari Lebih Lanjut</a>
       </div>
-      <span id="menuToggle"><i class="fas fa-bars"></i></span>
-      <ul id="navMenu">
-        <li><a href="#hero"><i class="fa-solid fa-house" style="color: black;"></i> Beranda</a></li>
-        <li><a href="#tentang"><i class="fas fa-info-circle" style="color: black;"></i> Tentang</a></li>
-        <li><a href="#layanan"><i class="fas fa-cogs" style="color: black;"></i> Layanan</a></li>
-        <li><a href="#galeri"><i class="fa-solid fa-image" style="color: black"></i> Galeri</a></li>
-        <li><a href="#kontak"><i class="fas fa-envelope" style="color: black;"></i> Kontak</a></li>
-      </ul>
-    </nav>
+    </div>
+    <div class="hero-image">
+      <img src="image/logompk.jpg" alt="MPK SMKN 1 Dukuhturi">
+    </div>
+  </section>
 
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="hero-content">
-        <h1>Forum MPK SMKN 1 Dukuhturi</h1>
-        <p><b>Selamat datang di Website Resmi Majelis Perwakilan Kelas (MPK) SMKN 1 Dukuhturi.</b> Website ini dibuat
-          sebagai sarana informasi, komunikasi, dan inspirasi bagi seluruh siswa. Bersama, kita wujudkan MPK yang aktif,
-          peduli, dan berdayzzazaa!
+  <!-- TENTANG -->
+  <section id="tentang">
+    <h2 class="judul">Tentang Kami</h2>
+    <div class="kartu animate-on-scroll">
+      <h4>Apa itu MPK SMKN 1 DUKUHTURI?</h4>
+      <p>MPK (Majelis Perwakilan Kelas) <a href="https://smknegeri1dukuhturi.sch.id/" target="_blank"
+          style="color: rgb(0, 0, 164)">SMKN 1 DUKUHTURI</a> adalah penggerak demokrasi dan penyalur aspirasi siswa yang
+        berlandaskan
+        transparansi, tanggung jawab, dan semangat kolaborasi untuk mewujudkan perubahan nyata di lingkungan sekolah.
+      </p>
+    </div>
+    <div class="grid-container">
+      <div class="kartu animate-on-scroll">
+        <h4>Visi</h4>
+        <p>Mewujudkan MPK sebagai penyelenggara demokrasi sekolah yang transparan, terbuka, dan berintegritas dalam
+          menyalurkan aspirasi serta memperjuangkan suara siswa demi terciptanya lingkungan sekolah yang partisipatif
+          dan berkeadilan.
         </p>
-        <p><i>"Satu visi, Satu misi, Satu aksi, Salurkan Aspirasi"</i></p>
-        <div class="hero-buttons">
-          <a href="form.html" class="btn"><i class="fas fa-paper-plane"></i> Sampaikan Aspirasi</a>
-          <a href="#tentang" class="btn btn-outline"><i class="fas fa-book-open"></i> Pelajari Lebih Lanjut</a>
-        </div>
       </div>
-      <div class="hero-image">
-        <img src="../image/ini_logo_MPK.jpg" alt="MPK SMKN 1 Dukuhturi">
-      </div>
-    </section>
-
-    <!-- TENTANG -->
-    <section id="tentang">
-      <h2 class="judul">Tentang Kami</h2>
-      <div class="kartu">
-        <h4>Apa itu MPK SMKN 1 DUKUHTURI?</h4>
-        <p>MPK (Majelis Perwakilan Kelas) <a href="https://smknegeri1dukuhturi.sch.id/" target="_blank"
-            style="color: rgb(0, 0, 164)">SMKN 1 DUKUHTURI</a> adalah penggerak demokrasi dan penyalur aspirasi siswa yang
-          berlandaskan
-          transparansi, tanggung jawab, dan semangat kolaborasi untuk mewujudkan perubahan nyata di lingkungan sekolah.
-        </p>
-      </div>
-      <div class="grid-container">
-        <div class="kartu">
-          <h4>Visi</h4>
-          <p>Mewujudkan MPK sebagai penyelenggara demokrasi sekolah yang transparan, terbuka, dan berintegritas dalam
-            menyalurkan aspirasi serta memperjuangkan suara siswa demi terciptanya lingkungan sekolah yang partisipatif
-            dan berkeadilan.
-          </p>
-        </div>
-        <div class="kartu"  >
-          <h4>Misi</h4>
-          <ul>
-            <li>Menegakkan nilai-nilai demokrasi dengan menjamin keterbukaan dan keadilan dalam setiap keputusan.</li>
-            <li>Menjadi wadah utama penyaluran aspirasi siswa secara jujur, tanggap, dan bertanggung jawab.</li>
-            <li>Mendorong transparansi kinerja MPK melalui laporan dan publikasi kegiatan secara berkala.</li>
-            <li>Melaksanakan fungsi pengawasan terhadap OSIS dan kegiatan sekolah secara objektif dan konstruktif.</li>
-            <li>Mengembangkan partisipasi aktif serta budaya kritis dan beretika di kalangan siswa.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="layanan">
-        <h2 class="judul" style="padding-top: 3rem">Buku Panduan Program Kerja MPK</h2>
-        <div class="grid-container">
-          <div class="kartu">
-            <h4>Suara Aspirasi</h4>
-            <img src=../image/fotbar1.jpg>
-            <p style="margin-top: 1rem">ipsum dolor sit amet consectetur adipisicing elit. Earum ipsa beatae in dolore
-              iusto
-              illum
-              numquam quod. Rem inventore velit, placeat amet cum earum laboriosam enim fuga beatae sit officiis?</p>
-            <a class="read-more" href="#">
-              Baca selengkapnya
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </a>
-          </div>
-          <div class="kartu">
-            <h4>Podcast MPK</h4>
-            <img src="../image/podcast.jpg">
-            <img>
-            <p style="margin-top: 1rem">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum ipsa beatae in
-              dolore iusto
-              illum
-              numquam quod. Rem inventore velit, placeat amet cum earum laboriosam enim fuga beatae sit officiis?
-              <a class="read-more" href="#">
-                Baca selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
-            </p>
-          </div>
-          <div class="kartu">
-            <h4>Digital Storytelling</h4>
-            <img src="../image/d.storrytalling.webp">
-            <p style="margin-top: 1rem">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum ipsa beatae in
-              dolore iusto
-              illum
-              numquam quod. Rem inventore velit, placeat amet cum earum laboriosam enim fuga beatae sit officiis?
-              <a class="read-more" href="#">
-                Baca selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LAYANAN - SCROLL HORIZONTAL TERPISAH -->
-    <h2 class="judul">Layanan aspirasi MPK</h2>
-    <div id="layanan" class="horizontal-section-wrapper">
-      <div class="horizontal-arrow left" id="prevBtn">
-        <i class="fas fa-chevron-left"></i>
-      </div>
-      <div class="horizontal-arrow right" id="nextBtn">
-        <i class="fas fa-chevron-right"></i>
-      </div>
-
-      <div class="horizontal-container" id="horizontalContainer">
-        <div class="horizontal-panel satu">
-          <!-- <div class="horizontal-content">
-            <h1 class="horizontal-title">Layanan Aspirasi MPK</h1>
-            <p class="horizontal-subtitle">MPK hadir sebagai wadah untuk menampung, menindaklanjuti, dan memberikan solusi
-              atas aspirasi siswa SMKN 1 Dukuhturi.</p>
-            <a href="form.html" class="horizontal-btn">Sampaikan Aspirasi</a>
-          </div> -->
-        </div>
-
-        <div class="horizontal-panel dua">
-          <!-- <div class="horizontal-content">
-            <h1 class="horizontal-title">Fitur Unggulan</h1>
-            <p class="horizontal-subtitle">Formulir aspirasi online yang mudah diakses, responsif, dan terjamin
-              kerahasiaannya.</p>
-            <a href="form.html" class="horizontal-btn">Lihat Formulir</a>
-          </div> -->
-        </div>
-
-        <div class="horizontal-panel tiga">
-          <!-- <div class="horizontal-content">
-            <h1 class="horizontal-title">Program Kerja</h1>
-            <p class="horizontal-subtitle">Berbagai program kerja MPK untuk meningkatkan kualitas pembelajaran dan
-              lingkungan sekolah.</p>
-            <a href="#" class="horizontal-btn">Lihat Program</a>
-          </div> -->
-        </div>
-
-        <div class="horizontal-panel empat">
-          <!-- <div class="horizontal-content">
-            <h1 class="horizontal-title">Testimoni Siswa</h1>
-            <p class="horizontal-subtitle">Pengalaman siswa dalam menyampaikan aspirasi dan hasil yang didapatkan.</p>
-            <a href="#" class="horizontal-btn">Baca Testimoni</a>
-          </div> -->
-        </div>
-
-        <div class="horizontal-panel lima">
-          <div class="horizontal-content">
-            <a href="#" class="horizontal-btn">Kirim Aspirasi</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="horizontal-nav" id="horizontalNav">
-        <!-- Dots akan diisi oleh JavaScript -->
+      <div class="kartu animate-on-scroll">
+        <h4>Misi</h4>
+        <ul>
+          <li>Menegakkan nilai-nilai demokrasi dengan menjamin keterbukaan dan keadilan dalam setiap keputusan.</li>
+          <li>Menjadi wadah utama penyaluran aspirasi siswa secara jujur, tanggap, dan bertanggung jawab.</li>
+          <li>Mendorong transparansi kinerja MPK melalui laporan dan publikasi kegiatan secara berkala.</li>
+          <li>Melaksanakan fungsi pengawasan terhadap OSIS dan kegiatan sekolah secara objektif dan konstruktif.</li>
+          <li>Mengembangkan partisipasi aktif serta budaya kritis dan beretika di kalangan siswa.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- galeri cihuy -->
+    <!-- buku progja -->
+    <h2 class="judul" style="padding-top: 3rem">Buku Panduan Program Kerja MPK</h2>
+    <div class="container">
+      <p>“Ini adalah beberapa program kerja unggulan kami — wujud nyata dari komitmen kami untuk berkontribusi,
+        berinovasi, dan membawa perubahan positif di lingkungan sekitar. Setiap program dirancang dengan semangat
+        kebersamaan dan tujuan membangun generasi yang lebih unggul.
+
+        Nantikan program kerja kami selanjutnya yang akan hadir dengan ide-ide baru, langkah nyata, dan semangat
+        pengabdian yang lebih besar!”
+
+      </p>
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="image/suaraaspirasi.png" alt="Pemandangan" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Suara Aspirasi</h3>
+          <p class="card-description">
+            Program utama MPK SMKN 1 Dukuhturi yang berfungsi sebagai wadah resmi untuk menampung suara, pendapat, dan
+            saran seluruh warga sekolah. Melalui program ini, MPK berperan aktif menjadi jembatan antara siswa, OSIS,
+            dan pihak sekolah dalam menyampaikan aspirasi yang membangun.
+          </p>
+          <a href="#" class="read-more">Baca Selengkapnya</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="image/podcashekstratalks.png" alt="Teknologi" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Podcast Ekstra Talks</h3>
+          <p class="card-description">
+            EkstraTalks adalah program podcast yang menampilkan wawancara dengan seluruh ekstrakurikuler dan organisasi
+            di SMKN 1 Dukuhturi. Program ini bertujuan untuk memberikan informasi kepada siswa baru tentang kegiatan
+            ekstrakurikuler dan organisasi di sekolah, serta membantu mereka memilih ekstrakurikuler yang sesuai.
+          </p>
+          <a href="#" class="read-more">Baca Selengkapnya</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="image/digitalstorytelling.png" alt="Kreativitas" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Digital Storytelling</h3>
+          <p class="card-description">
+            Program Digital StoryTelling adalah kegiatan yang bertujuan untuk mengembangkan kemampuan literasi dan
+            kreativitas siswa SMKN 1 Dukuhturi melalui pembuatan konten digital yang menarik dan informatif. Program ini
+            akan dilaksanakan setiap 3 bulan sekali pada hari Selasa.
+
+          </p>
+          <a href="#" class="read-more">Baca Selengkapnya</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYANAN -->
+    <div class="carousel-container">
+      <div class="carousel-arrow left" id="prevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="carousel-arrow right" id="nextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+
+      <div class="carousel" id="carousel">
+        <!-- Slide 1 -->
+        <div class="carousel-slide">
+          <img src="image/layanan1.jpg" alt="Siswa SMKN 1 Dukuhturi" class="carousel-image">
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <img src="image/layanan2.jpg" alt="Kegiatan Sekolah" class="carousel-image">
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <img src="image/layanan3.jpg" alt="Suara Aspirasi" class="carousel-image">
+          <button class="voice-btn">
+            <a href="form.html"><i class="fas fa-microphone"></i> Suara Aspirasi</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-nav" id="carouselNav">
+        <!-- Dots akan dibuat dengan JavaScript -->
+      </div>
+    </div>
+    <!-- GALERI -->
     <div id="galeri">
       <h2 class="judul" style="padding-top: 3rem">Galeri</h2>
       <div class="kartu">
         <div class="grid-container1">
-          <img src="../image/fotbar1.jpg">
-          <img src="../image/fotbar2.jpg">
-          <img src="../image/fotbar1.jpg">
-          <img src="../image/fotbar2.jpg">
-          <img src="../image/fotbar1.jpg">
-          <img src="../image/fotbar2.jpg">
-          <img src="../image/fotbar1.jpg">
-          <img src="../image/fotbar2.jpg">
-          <img src="../image/fotbar1.jpg">
-          <img src="../image/fotbar2.jpg">
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8f62b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img src="https://images.unsplash.com/-
+          photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8f62b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
         </div>
       </div>
     </div>
 
+    <!-- FOOTER -->
+    <footer id="kontak">
+      <div class="footer-container">
+        <!-- Menu Lainnya -->
+        <div class="footer-section">
+          <h3>Lainnya</h3>
+          <div class="footer-links">
+            <ul>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Berita Sekolah</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Galeri Foto</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Pengumuman</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Kalender Akademik</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> E-Learning</a></li>
+            </ul>
+          </div>
+        </div>
 
-    <!-- KONTAK -->
-    <section id="kontak">
-      <h2 class="judul">Hubungi Kami</h2>
-      <div class="kontak-grid">
-        <div class="kontak-item">
-          <div class="kontak-icon" style="background-color:rgb(231, 231, 231);">
-            <i class="fas fa-envelope" style="color:black"></i>
+        <!-- Peta Lokasi di Tengah -->
+        <div class="footer-map-container">
+          <div class="double-logo">
+            <img src="image/logompk.jpg" alt="Logo MPK">
+            <img src="image/ini_logo_MPK.jpg" alt="Logo SMA Negeri 106 Jakarta">
           </div>
-          <div class="kontak-info">
-            <h4>Email</h4>
-            <p><a
-                href="mailto:mpksmkn1dukuhturi@gmail.com?subject=Aspirasi%20Siswa&body=Assalamualaikum%2C%20saya%20ingin%20menyampaikan...">mpksmkn1dukuhturi@gmail.com</a>
-            </p>
+          <div class="footer-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d649.2466984490583!2d109.13527354403911!3d-6.890357099125286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb9b5d0e5151d%3A0xe909e36128b1e1f7!2sSMK%20Negeri%201%20Dukuhturi!5e1!3m2!1sid!2sid!4v1762218534560!5m2!1sid!2sid"
+              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="address">
+            <p>Jl. Raya Karang Anyar No.17, Pekauman Kulon, Kec. Dukuhturi, Kabupaten Tegal, Jawa Tengah 52192</p>
+          </div>
+
+          <!-- Media Sosial Tambahan -->
+          <div class="footer-social">
+            <a href="#" class="social-icon facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon youtube">
+              <i class="fab fa-youtube"></i>
+            </a>
           </div>
         </div>
-        <div class="kontak-item">
-          <div class="kontak-icon" style="background-color: rgb(0, 212, 0)">
-            <i class="fab fa-whatsapp"></i>
-          </div>
-          <div class="kontak-info">
+
+        <!-- Hubungi Kami dengan WhatsApp -->
+        <div class="footer-section whatsapp-section">
+          <h3>Hubungi Kami</h3>
+          <div class="whatsapp-box">
             <h4>WhatsApp</h4>
-            <p><a
-                href="https://wa.me/6281779522854?text=Halo%2C%20saya%20ingin%20mengirim%20aspirasi%20atau%20bertanya%20tentang%20kegiatan%20sekolah..."
-                target="_blank">+62 817-7952-2854</a></p>
+            <p>Hubungi kami melalui WhatsApp untuk informasi lebih lanjut</p>
+            <a href="https://wa.me/6281779522854?text=Halo%2C%20saya%20ingin%20mengirim%20aspirasi%20atau%20bertanya%20tentang%20kegiatan%20sekolah..."
+              class="btn-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+              <span>Chat Sekarang</span>
+            </a>
           </div>
-        </div>
-        <div class="kontak-item">
-          <div class="kontak-icon"
-            style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
-            <i class="fab fa-instagram"></i>
-          </div>
-          <div class="kontak-info">
-            <h4>Instagram</h4>
-            <p><a href="https://www.instagram.com/mpksmekar?igsh=MWtwaG5seHg5dmtmbQ=="
-                target="_blank">@mpksmkn1dukuhturi</a></p>
+
+          <!-- Media Sosial Tambahan -->
+          <div class="additional-social">
+            <h4>Media Sosial Lainnya</h4>
+            <div class="social-icons-additional">
+              <a href="#" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-icon email">
+                <i class="fas fa-envelope"></i>
+              </a>
+              <a href="#" class="social-icon tiktok">
+                <i class="fab fa-tiktok"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-content">
-        <div class="social-links">
-          <div class="kontak-icon1">
-            <a class="f-IG" href="https://instagram.com/mpk_smkn1dukuhturi" target="_blank"><i
-                class="fab fa-instagram"></i></a>
-          </div>
-          <div class="kontak-icon1">
-            <a class="f-wa" href="https://wa.me/6281234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          </div>
-          <div class="kontak-icon1">
-            <a class="f-mail" href="mailto:mpk.smkn1dukuhturi@gmail.com"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-        <p>&copy; <span id="thn"></span>© 2025 MPK SMKN 1 Dukuhturi | Crafted for a Better School</p>
+      <div class="footer-bottom">
+        <p>Copyright © <span id="thn"></span> Aspirative. All Rights Reserved</p>
       </div>
     </footer>
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-    <script src="../js/main.js"></script>
-  </body>
+    <script src="js/main.js"></script>
+</body>
 
-  </html>
+</html>

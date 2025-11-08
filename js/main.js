@@ -1,240 +1,389 @@
+// Inisialisasi particles.js
+particlesJS('particles-js', {
+  particles: {
+    number: {
+      value: 80,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    },
+    color: {
+      value: "#b92f2f"
+    },
+    shape: {
+      type: "circle",
+      stroke: {
+        width: 0,
+        color: "#000000"
+      }
+    },
+    opacity: {
+      value: 0.5,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false
+      }
+    },
+    size: {
+      value: 3,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 2,
+        size_min: 0.1,
+        sync: false
+      }
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#b92f2f",
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out",
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200
+      }
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab"
+      },
+      onclick: {
+        enable: true,
+        mode: "push"
+      },
+      resize: true
+    },
+    modes: {
+      grab: {
+        distance: 140,
+        line_linked: {
+          opacity: 1
+        }
+      },
+      push: {
+        particles_nb: 4
+      }
+    }
+  },
+  retina_detect: true
+});
+
 // Tahun otomatis
-    document.getElementById('thn').textContent = new Date().getFullYear();
+document.getElementById('thn').textContent = new Date().getFullYear();
 
-    // Mobile nav toggle
-    const toggle = document.getElementById('menuToggle');
-    const menu = document.getElementById('navMenu');
-    if (toggle && menu) {
-      toggle.onclick = () => menu.classList.toggle('show');
-    }
+// Mobile nav toggle
+const toggle = document.getElementById('menuToggle');
+const menu = document.getElementById('navMenu');
+const closeBtn = document.querySelector('.close-btn');
 
-    // Tutup menu mobile saat klik link
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (menu) menu.classList.remove('show');
-      });
+if (toggle && menu) {
+  toggle.onclick = () => menu.classList.toggle('active');
+}
+
+if (closeBtn && menu) {
+  closeBtn.onclick = () => menu.classList.remove('active');
+}
+
+// Tutup menu mobile saat klik link
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (menu) menu.classList.remove('active');
+  });
+});
+
+// Efek scroll untuk navbar
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// ===========================================
+// SCROLL HORIZONTAL TERPISAH
+// ===========================================
+const horizontalContainer = document.getElementById('horizontalContainer');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const horizontalNav = document.getElementById('horizontalNav');
+
+if (horizontalContainer && horizontalNav) {
+  const panels = document.querySelectorAll('.horizontal-panel');
+  const totalPanels = panels.length;
+  let currentPanel = 0;
+
+  // Buat navigasi dots
+  panels.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('horizontal-dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      goToPanel(index);
     });
+    horizontalNav.appendChild(dot);
+  });
 
-    // Efek scroll untuk navbar
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
+  const dots = document.querySelectorAll('.horizontal-dot');
+
+  // Fungsi untuk pergi ke panel tertentu
+  function goToPanel(panelIndex) {
+    currentPanel = panelIndex;
+    const translateX = -currentPanel * 100;
+    horizontalContainer.style.transform = `translateX(${translateX}%)`;
+
+    // Update status aktif dot
+    dots.forEach((dot, index) => {
+      if (index === currentPanel) {
+        dot.classList.add('active');
       } else {
-        nav.classList.remove('scrolled');
+        dot.classList.remove('active');
       }
     });
+  }
 
-    // ===========================================
-    // SCROLL HORIZONTAL TERPISAH
-    // ===========================================
-    const horizontalContainer = document.getElementById('horizontalContainer');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const horizontalNav = document.getElementById('horizontalNav');
-
-    if (horizontalContainer && horizontalNav) {
-      const panels = document.querySelectorAll('.horizontal-panel');
-      const totalPanels = panels.length;
-      let currentPanel = 0;
-
-      // Buat navigasi dots
-      panels.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('horizontal-dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-          goToPanel(index);
-        });
-        horizontalNav.appendChild(dot);
-      });
-
-      const dots = document.querySelectorAll('.horizontal-dot');
-
-      // Fungsi untuk pergi ke panel tertentu
-      function goToPanel(panelIndex) {
-        currentPanel = panelIndex;
-        const translateX = -currentPanel * 100;
-        horizontalContainer.style.transform = `translateX(${translateX}vw)`;
-
-        // Update status aktif dot
-        dots.forEach((dot, index) => {
-          if (index === currentPanel) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
-        });
+  // Event listener untuk tombol panah
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentPanel > 0) {
+        goToPanel(currentPanel - 1);
       }
+    });
+  }
 
-      // Event listener untuk tombol panah
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          if (currentPanel > 0) {
-            goToPanel(currentPanel - 1);
-          }
-        });
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentPanel < totalPanels - 1) {
+        goToPanel(currentPanel + 1);
       }
+    });
+  }
 
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          if (currentPanel < totalPanels - 1) {
-            goToPanel(currentPanel + 1);
-          }
-        });
+  // Event listener untuk keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      if (currentPanel > 0) {
+        goToPanel(currentPanel - 1);
       }
-
-      // Event listener untuk keyboard
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          if (currentPanel > 0) {
-            goToPanel(currentPanel - 1);
-          }
-        } else if (e.key === 'ArrowRight') {
-          if (currentPanel < totalPanels - 1) {
-            goToPanel(currentPanel + 1);
-          }
-        }
-      });
-
-      // Event listener untuk swipe pada perangkat mobile
-      let startX = 0;
-      let endX = 0;
-
-      horizontalContainer.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-      });
-
-      horizontalContainer.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        handleSwipe();
-      });
-
-      function handleSwipe() {
-        const swipeThreshold = 50;
-
-        if (startX - endX > swipeThreshold) {
-          // Swipe kiri
-          if (currentPanel < totalPanels - 1) {
-            goToPanel(currentPanel + 1);
-          }
-        } else if (endX - startX > swipeThreshold) {
-          // Swipe kanan
-          if (currentPanel > 0) {
-            goToPanel(currentPanel - 1);
-          }
-        }
+    } else if (e.key === 'ArrowRight') {
+      if (currentPanel < totalPanels - 1) {
+        goToPanel(currentPanel + 1);
       }
-
-      // Auto slide untuk horizontal section
-      let autoSlideInterval = setInterval(() => {
-        if (currentPanel < totalPanels - 1) {
-          goToPanel(currentPanel + 1);
-        } else {
-          goToPanel(0);
-        }
-      }, 5000);
-
-      // Hentikan auto slide saat user berinteraksi
-      horizontalContainer.addEventListener('mouseenter', () => {
-        clearInterval(autoSlideInterval);
-      });
-
-      horizontalContainer.addEventListener('mouseleave', () => {
-        autoSlideInterval = setInterval(() => {
-          if (currentPanel < totalPanels - 1) {
-            goToPanel(currentPanel + 1);
-          } else {
-            goToPanel(0);
-          }
-        }, 5000);
-      });
     }
+  });
 
-    // Animasi saat elemen masuk ke viewport
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+  // Event listener untuk swipe pada perangkat mobile
+  let startX = 0;
+  let endX = 0;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
+  horizontalContainer.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
 
-    // Terapkan animasi pada elemen kartu
-    document.querySelectorAll('.kartu').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(card);
-    });
+  horizontalContainer.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
 
-    // Animasi untuk kontak items
-    document.querySelectorAll('.kontak-item').forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
-      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(item);
-    });
+  function handleSwipe() {
+    const swipeThreshold = 50;
 
-    // slide beranda
-    const hero = document.getElementById('hero');
-
-    const images = [
-      '../image/fotbar1.jpg',
-      '../image/fotbar2.jpg',
-      '..image/fotbar3.jpg'
-    ];
-
-    let index = 0;
-
-    // set background pertama
-    hero.style.backgroundImage = `url('${images[index]}')`;
-
-    function changeBackground() {
-      // tambahkan efek blur
-      hero.classList.add('fade');
-
-      setTimeout(() => {
-        index = (index + 1) % images.length;
-        hero.style.backgroundImage = `url('${images[index]}')`;
-      }, 500); // delay sedikit sebelum ganti gambar
-
-      // hilangkan blur setelah gambar berubah
-      setTimeout(() => {
-        hero.classList.remove('fade');
-      }, 1000);
+    if (startX - endX > swipeThreshold) {
+      // Swipe kiri
+      if (currentPanel < totalPanels - 1) {
+        goToPanel(currentPanel + 1);
+      }
+    } else if (endX - startX > swipeThreshold) {
+      // Swipe kanan
+      if (currentPanel > 0) {
+        goToPanel(currentPanel - 1);
+      }
     }
+  }
 
-    // ganti background tiap 5 detik
-    setInterval(changeBackground, 5000);
+  // Auto slide untuk horizontal section
+  let autoSlideInterval = setInterval(() => {
+    if (currentPanel < totalPanels - 1) {
+      goToPanel(currentPanel + 1);
+    } else {
+      goToPanel(0);
+    }
+  }, 5000);
 
-    // Tambahkan class saat tombol ditekan (untuk mobile)
-    document.querySelectorAll('.btn').forEach(button => {
-      // Untuk touch devices
-      button.addEventListener('touchstart', function () {
-        this.style.transform = 'scale(0.95)';
-      });
+  // Hentikan auto slide saat user berinteraksi
+  horizontalContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoSlideInterval);
+  });
 
-      button.addEventListener('touchend', function () {
-        this.style.transform = 'scale(1)';
-      });
+  horizontalContainer.addEventListener('mouseleave', () => {
+    autoSlideInterval = setInterval(() => {
+      if (currentPanel < totalPanels - 1) {
+        goToPanel(currentPanel + 1);
+      } else {
+        goToPanel(0);
+      }
+    }, 5000);
+  });
+}
 
-      // Untuk devices dengan stylus/pen
-      button.addEventListener('pointerdown', function () {
-        if (window.matchMedia("(pointer: coarse)").matches) {
-          this.style.transform = 'scale(0.95)';
-        }
-      });
+// Animasi saat elemen masuk ke viewport
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
 
-      button.addEventListener('pointerup', function () {
-        this.style.transform = 'scale(1)';
-      });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animated');
+    }
+  });
+}, observerOptions);
+
+// Terapkan animasi pada elemen kartu
+document.querySelectorAll('.animate-on-scroll').forEach(element => {
+  observer.observe(element);
+});
+
+// Slide hero background
+const hero = document.getElementById('hero');
+const images = [
+  'image/1home.jpg',
+  'image/2home.jpg',
+  'image/3home.jpg',
+];
+
+let index = 0;
+let nextIndex = 1;
+
+// Set background pertama
+hero.style.backgroundImage = `url('${images[index]}')`;
+
+// Preload semua gambar
+images.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
+function changeBackground() {
+  // Ganti background dengan transisi halus
+  hero.style.backgroundImage = `url('${images[nextIndex]}')`;
+
+  // Update indeks
+  index = nextIndex;
+  nextIndex = (nextIndex + 1) % images.length;
+}
+
+// Ganti background tiap 5 detik
+setInterval(changeBackground, 5000);
+
+// Tambahkan class saat tombol ditekan (untuk mobile)
+document.querySelectorAll('.btn').forEach(button => {
+  // Untuk touch devices
+  button.addEventListener('touchstart', function () {
+    this.style.transform = 'scale(0.95)';
+  });
+
+  button.addEventListener('touchend', function () {
+    this.style.transform = 'scale(1)';
+  });
+
+  // Untuk devices dengan stylus/pen
+  button.addEventListener('pointerdown', function () {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      this.style.transform = 'scale(0.95)';
+    }
+  });
+
+  button.addEventListener('pointerup', function () {
+    this.style.transform = 'scale(1)';
+  });
+});
+document.addEventListener('DOMContentLoaded', function () {
+  const carousel = document.getElementById('carousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const navContainer = document.getElementById('carouselNav');
+  const voiceBtn = document.getElementById('voiceBtn');
+
+  let currentSlide = 0;
+  const totalSlides = document.querySelectorAll('.carousel-slide').length;
+
+  // Membuat dots navigasi
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('carousel-dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    navContainer.appendChild(dot);
+  }
+
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  // Fungsi untuk pindah slide
+  function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Update active dot
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
     });
-    
+  }
+
+  // Event listener untuk tombol panah
+  prevBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(currentSlide);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(currentSlide);
+  });
+
+  // Event listener untuk tombol suara
+  voiceBtn.addEventListener('click', function () {
+    alert('Fitur Suara Aspirasi akan membuka halaman perekaman suara');
+    // Di sini bisa diarahkan ke halaman suara aspirasi
+    // window.location.href = 'suara-aspirasi.html';
+  });
+
+  // Auto slide setiap 5 detik
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(currentSlide);
+  }, 5000);
+
+  // Responsif untuk berbagai ukuran gambar
+  window.addEventListener('resize', function () {
+    // Force reflow untuk memastikan ukuran tetap sesuai
+    carousel.style.transition = 'none';
+    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    setTimeout(() => {
+      carousel.style.transition = 'transform 0.5s ease';
+    }, 50);
+  });
+});
