@@ -123,6 +123,176 @@ window.addEventListener('scroll', () => {
 });
 
 // ===========================================
+// CAROUSEL LAYANAN
+// ===========================================
+document.addEventListener('DOMContentLoaded', function() {
+  // Inisialisasi Layanan Carousel
+  const layananCarousel = document.getElementById('layananCarousel');
+  const layananSlides = document.querySelectorAll('.layanan-slide');
+  const layananPrevBtn = document.getElementById('layananPrevBtn');
+  const layananNextBtn = document.getElementById('layananNextBtn');
+  const layananNav = document.getElementById('layananNav');
+  
+  if (layananCarousel && layananNav) {
+    let layananCurrentIndex = 0;
+    const layananTotalSlides = layananSlides.length;
+    
+    // Buat indikator dots
+    layananSlides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('layanan-dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        goToLayananSlide(index);
+      });
+      layananNav.appendChild(dot);
+    });
+    
+    const layananDots = document.querySelectorAll('.layanan-dot');
+    
+    function updateLayananCarousel() {
+      layananCarousel.style.transform = `translateX(-${layananCurrentIndex * 100}%)`;
+      
+      // Update active dot
+      layananDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === layananCurrentIndex);
+      });
+    }
+    
+    function goToLayananSlide(index) {
+      layananCurrentIndex = index;
+      updateLayananCarousel();
+    }
+    
+    function nextLayananSlide() {
+      layananCurrentIndex = (layananCurrentIndex + 1) % layananTotalSlides;
+      updateLayananCarousel();
+    }
+    
+    function prevLayananSlide() {
+      layananCurrentIndex = (layananCurrentIndex - 1 + layananTotalSlides) % layananTotalSlides;
+      updateLayananCarousel();
+    }
+    
+    // Event listeners
+    if (layananNextBtn) {
+      layananNextBtn.addEventListener('click', nextLayananSlide);
+    }
+    
+    if (layananPrevBtn) {
+      layananPrevBtn.addEventListener('click', prevLayananSlide);
+    }
+    
+    // Auto slide (opsional)
+    let layananAutoSlide = setInterval(nextLayananSlide, 5000);
+    
+    // Hentikan auto slide saat hover
+    layananCarousel.addEventListener('mouseenter', () => {
+      clearInterval(layananAutoSlide);
+    });
+    
+    layananCarousel.addEventListener('mouseleave', () => {
+      layananAutoSlide = setInterval(nextLayananSlide, 5000);
+    });
+  }
+
+  // ===========================================
+  // CAROUSEL GALERI
+  // ===========================================
+  const galeriSlides = document.querySelectorAll('.galeri-slide');
+  const galeriPrevBtn = document.querySelector('.galeri-nav.left');
+  const galeriNextBtn = document.querySelector('.galeri-nav.right');
+  const galeriIndicators = document.querySelector('.galeri-indicators');
+  
+  if (galeriSlides.length > 0 && galeriIndicators) {
+    let galeriCurrentIndex = 0;
+    const galeriTotalSlides = galeriSlides.length;
+    
+    // Buat indikator untuk galeri
+    galeriSlides.forEach((_, index) => {
+      const indicator = document.createElement('div');
+      indicator.classList.add('galeri-indicator');
+      if (index === 0) indicator.classList.add('active');
+      indicator.addEventListener('click', () => {
+        goToGaleriSlide(index);
+      });
+      galeriIndicators.appendChild(indicator);
+    });
+    
+    const galeriIndicatorDots = document.querySelectorAll('.galeri-indicator');
+    
+    function updateGaleriCarousel() {
+      galeriSlides.forEach((slide, index) => {
+        slide.classList.remove('active', 'prev', 'next', 'hidden');
+        
+        if (index === galeriCurrentIndex) {
+          slide.classList.add('active');
+        } else if (index === (galeriCurrentIndex - 1 + galeriTotalSlides) % galeriTotalSlides) {
+          slide.classList.add('prev');
+        } else if (index === (galeriCurrentIndex + 1) % galeriTotalSlides) {
+          slide.classList.add('next');
+        } else {
+          slide.classList.add('hidden');
+        }
+      });
+      
+      // Update active indicator
+      galeriIndicatorDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === galeriCurrentIndex);
+      });
+    }
+    
+    function goToGaleriSlide(index) {
+      galeriCurrentIndex = index;
+      updateGaleriCarousel();
+    }
+    
+    function nextGaleriSlide() {
+      galeriCurrentIndex = (galeriCurrentIndex + 1) % galeriTotalSlides;
+      updateGaleriCarousel();
+    }
+    
+    function prevGaleriSlide() {
+      galeriCurrentIndex = (galeriCurrentIndex - 1 + galeriTotalSlides) % galeriTotalSlides;
+      updateGaleriCarousel();
+    }
+    
+    // Event listeners untuk galeri
+    if (galeriNextBtn) {
+      galeriNextBtn.addEventListener('click', nextGaleriSlide);
+    }
+    
+    if (galeriPrevBtn) {
+      galeriPrevBtn.addEventListener('click', prevGaleriSlide);
+    }
+    
+    // Keyboard navigation untuk galeri
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevGaleriSlide();
+      if (e.key === 'ArrowRight') nextGaleriSlide();
+    });
+    
+    // Auto-rotation untuk galeri
+    let galeriAutoRotate = setInterval(nextGaleriSlide, 5000);
+    
+    // Pause auto-rotation on hover
+    const galeriCarousel = document.querySelector('.galeri-carousel');
+    if (galeriCarousel) {
+      galeriCarousel.addEventListener('mouseenter', () => {
+        clearInterval(galeriAutoRotate);
+      });
+      
+      galeriCarousel.addEventListener('mouseleave', () => {
+        galeriAutoRotate = setInterval(nextGaleriSlide, 5000);
+      });
+    }
+    
+    // Inisialisasi awal
+    updateGaleriCarousel();
+  }
+});
+
+// ===========================================
 // SCROLL HORIZONTAL TERPISAH
 // ===========================================
 const horizontalContainer = document.getElementById('horizontalContainer');
@@ -269,35 +439,37 @@ document.querySelectorAll('.animate-on-scroll').forEach(element => {
 
 // Slide hero background
 const hero = document.getElementById('hero');
-const images = [
-  'image/1home.jpg',
-  'image/2home.jpg',
-  'image/3home.jpg',
-];
+if (hero) {
+  const images = [
+    'image/1home.jpg',
+    'image/2home.jpg',
+    'image/3home.jpg',
+  ];
 
-let index = 0;
-let nextIndex = 1;
+  let index = 0;
+  let nextIndex = 1;
 
-// Set background pertama
-hero.style.backgroundImage = `url('${images[index]}')`;
+  // Set background pertama
+  hero.style.backgroundImage = `url('${images[index]}')`;
 
-// Preload semua gambar
-images.forEach(src => {
-  const img = new Image();
-  img.src = src;
-});
+  // Preload semua gambar
+  images.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
 
-function changeBackground() {
-  // Ganti background dengan transisi halus
-  hero.style.backgroundImage = `url('${images[nextIndex]}')`;
+  function changeBackground() {
+    // Ganti background dengan transisi halus
+    hero.style.backgroundImage = `url('${images[nextIndex]}')`;
 
-  // Update indeks
-  index = nextIndex;
-  nextIndex = (nextIndex + 1) % images.length;
+    // Update indeks
+    index = nextIndex;
+    nextIndex = (nextIndex + 1) % images.length;
+  }
+
+  // Ganti background tiap 5 detik
+  setInterval(changeBackground, 5000);
 }
-
-// Ganti background tiap 5 detik
-setInterval(changeBackground, 5000);
 
 // Tambahkan class saat tombol ditekan (untuk mobile)
 document.querySelectorAll('.btn').forEach(button => {
@@ -319,71 +491,5 @@ document.querySelectorAll('.btn').forEach(button => {
 
   button.addEventListener('pointerup', function () {
     this.style.transform = 'scale(1)';
-  });
-});
-document.addEventListener('DOMContentLoaded', function () {
-  const carousel = document.getElementById('carousel');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const navContainer = document.getElementById('carouselNav');
-  const voiceBtn = document.getElementById('voiceBtn');
-
-  let currentSlide = 0;
-  const totalSlides = document.querySelectorAll('.carousel-slide').length;
-
-  // Membuat dots navigasi
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('carousel-dot');
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goToSlide(i));
-    navContainer.appendChild(dot);
-  }
-
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  // Fungsi untuk pindah slide
-  function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    // Update active dot
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
-    });
-  }
-
-  // Event listener untuk tombol panah
-  prevBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    goToSlide(currentSlide);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    goToSlide(currentSlide);
-  });
-
-  // Event listener untuk tombol suara
-  voiceBtn.addEventListener('click', function () {
-    alert('Fitur Suara Aspirasi akan membuka halaman perekaman suara');
-    // Di sini bisa diarahkan ke halaman suara aspirasi
-    // window.location.href = 'suara-aspirasi.html';
-  });
-
-  // Auto slide setiap 5 detik
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    goToSlide(currentSlide);
-  }, 5000);
-
-  // Responsif untuk berbagai ukuran gambar
-  window.addEventListener('resize', function () {
-    // Force reflow untuk memastikan ukuran tetap sesuai
-    carousel.style.transition = 'none';
-    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-    setTimeout(() => {
-      carousel.style.transition = 'transform 0.5s ease';
-    }, 50);
   });
 });
