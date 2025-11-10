@@ -201,6 +201,21 @@ window.addEventListener('scroll', () => {
   }
 });
 
+let scrollTimeout;
+
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector("nav");
+  
+  // Tambahkan kelas saat scroll
+  nav.classList.add("scrolled");
+
+  // Hapus kelas setelah scroll berhenti (misalnya 300ms setelah berhenti)
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    nav.classList.remove("scrolled");
+  }, 300);
+});
+
 // ===========================================
 // CAROUSEL LAYANAN
 // ===========================================

@@ -1041,7 +1041,8 @@ footer {
 
 /* Sidebar Styles */
 .sidebar {
-  width: 280px;
+  width: 290px;
+  height: 20px;
   background: var(--putih);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -1049,10 +1050,12 @@ footer {
   left: 0;
   top: 0;
   z-index: 1000;
+  align-items: first baseline;
+  padding: 30px;
   transition: transform 0.3s ease;
   transform: translateX(-100%);
-  align-items:first baseline;
-  padding: 20px
+  padding: 0;
+
 }
 
 .sidebar.active {
@@ -1060,25 +1063,35 @@ footer {
 }
 
 .sidebar-header {
-  padding: 30px 20px;
+  padding: 30px 100px;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: var(--putih);
   text-align: center;
+  margin: 1rem;
+  width: 100%;
+  margin-left: auto;
+  margin-top: 0;
+  top: 0;
 }
 
 .sidebar-logo {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  background: rgb(249, 249, 249);
+  border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 15px;
 }
 
-.sidebar-logo i {
-  font-size: 30px;
+.sidebar-logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0px;
 }
 
 .sidebar-title {
@@ -1103,20 +1116,22 @@ footer {
   color: var(--hitam);
   text-decoration: none;
   transition: all 0.3s;
-  border-left: 4px solid transparent;
+  border-left: 10px solid transparent;
   position: relative;
 }
 
 .nav-item:hover,
 .nav-item.active {
-  background: var(--merahMuda);
   color: var(--primary-color);
   border-left-color: var(--primary-color);
+  border-radius: 0;
+  background-color: rgba(255, 1, 1, 0.096);
+  padding-right: 1px;
 }
 
 .nav-item i {
-  width: 20px;
-  margin-right: 15px;
+  width: 30px;
+  margin-right: 1px;
   font-size: 18px;
 }
 
@@ -1141,16 +1156,6 @@ footer {
 @media (max-width: 768px) {
   .mobile-menu-toggle {
     display: block;
-  }
-
-  /* Hide regular navigation on mobile */
-  nav ul {
-    display: none;
-  }
-
-  nav img {
-    display: block;
-    margin-left: 50px;
   }
 }
 
@@ -1185,6 +1190,12 @@ footer {
   nav,
   nav.scrolled {
     padding: 15px 30px;
+    transition: all 0.3s;
+  }
+
+  nav.scrolled {
+    transform: translateX(-50px);
+
   }
 
 
@@ -1203,33 +1214,39 @@ footer {
   .hero-content h1 {
     font-size: 2.5rem;
     line-height: 1.2;
+    margin-bottom: 5px
   }
 
-  .hero-buttons {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
+  .hero-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
 
-  .hero-image {
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
-  }
+    .hero-buttons {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
 
-  /* Section umum */
-  section {
-    padding: 70px 30px;
-  }
+    .hero-image {
+      width: 100%;
+      max-width: 350px;
+      margin: 2 auto;
+    }
 
-  .judul {
-    font-size: 2.2rem;
+    /* Section umum */
+    section {
+      padding: 70px 30px;
+    }
+
+    .judul {
+      font-size: 2.2rem;
+    }
   }
 }
 
 /* Breakpoint untuk tablet kecil dan mobile besar */
 @media (max-width: 768px) {
-
   nav ul {
     position: fixed;
     top: 0;
