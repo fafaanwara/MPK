@@ -91,27 +91,106 @@ particlesJS('particles-js', {
 // Tahun otomatis
 document.getElementById('thn').textContent = new Date().getFullYear();
 
-// Mobile nav toggle
-const toggle = document.getElementById('menuToggle');
-const menu = document.getElementById('navMenu');
-const closeBtn = document.querySelector('.close-btn');
+// ===========================================
+// MOBILE MENU TOGGLE FUNCTIONALITY
+// ===========================================
 
-if (toggle && menu) {
-  toggle.onclick = () => menu.classList.toggle('active');
+// Menu Toggle Functionality
+const sidebar = document.getElementById('sidebar');
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+
+// Toggle sidebar function
+function toggleSidebar() {
+  sidebar.classList.toggle('active');
+
+  // Add overlay for mobile
+  if (window.innerWidth <= 768) {
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'sidebar-overlay';
+      overlay.onclick = toggleSidebar;
+      document.body.appendChild(overlay);
+    }
+    overlay.classList.toggle('active');
+  }
 }
 
-if (closeBtn && menu) {
-  closeBtn.onclick = () => menu.classList.remove('active');
+// Close sidebar function
+function closeSidebar() {
+  sidebar.classList.remove('active');
+  const overlay = document.querySelector('.sidebar-overlay');
+  if (overlay) {
+    overlay.classList.remove('active');
+  }
 }
 
-// Tutup menu mobile saat klik link
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if (menu) menu.classList.remove('active');
-  });
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', function (event) {
+  if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+    const isClickInsideSidebar = sidebar.contains(event.target);
+    const isClickOnToggle = mobileMenuToggle.contains(event.target);
+
+    if (!isClickInsideSidebar && !isClickOnToggle) {
+      closeSidebar();
+    }
+  }
 });
 
+// Handle window resize
+window.addEventListener('resize', function () {
+  if (window.innerWidth > 768) {
+    closeSidebar();
+  }
+});
+
+// Add keyboard support (ESC key to close sidebar)
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && sidebar.classList.contains('active')) {
+    closeSidebar();
+  }
+});
+
+// Update active nav item based on scroll position
+function updateActiveNav() {
+  const sections = document.querySelectorAll('section');
+  const navItems = document.querySelectorAll('.nav-item');
+  const regularNavItems = document.querySelectorAll('#navMenu a');
+
+  let currentSection = '';
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.clientHeight;
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+
+  // Update sidebar nav items
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    const href = item.getAttribute('href');
+    if (href === `#${currentSection}`) {
+      item.classList.add('active');
+    }
+  });
+
+  // Update regular nav items
+  regularNavItems.forEach(item => {
+    item.classList.remove('active');
+    const href = item.getAttribute('href');
+    if (href === `#${currentSection}`) {
+      item.classList.add('active');
+    }
+  });
+}
+
+// Update active nav on scroll
+window.addEventListener('scroll', updateActiveNav);
+
+// Initialize active nav on page load
+document.addEventListener('DOMContentLoaded', updateActiveNav);
 // Efek scroll untuk navbar
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
@@ -125,18 +204,18 @@ window.addEventListener('scroll', () => {
 // ===========================================
 // CAROUSEL LAYANAN
 // ===========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Inisialisasi Layanan Carousel
   const layananCarousel = document.getElementById('layananCarousel');
   const layananSlides = document.querySelectorAll('.layanan-slide');
   const layananPrevBtn = document.getElementById('layananPrevBtn');
   const layananNextBtn = document.getElementById('layananNextBtn');
   const layananNav = document.getElementById('layananNav');
-  
+
   if (layananCarousel && layananNav) {
     let layananCurrentIndex = 0;
     const layananTotalSlides = layananSlides.length;
-    
+
     // Buat indikator dots
     layananSlides.forEach((_, index) => {
       const dot = document.createElement('div');
@@ -147,50 +226,45 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       layananNav.appendChild(dot);
     });
-    
+
     const layananDots = document.querySelectorAll('.layanan-dot');
-    
+
     function updateLayananCarousel() {
       layananCarousel.style.transform = `translateX(-${layananCurrentIndex * 100}%)`;
-      
-      // Update active dot
-      layananDots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === layananCurrentIndex);
-      });
     }
-    
+
     function goToLayananSlide(index) {
       layananCurrentIndex = index;
       updateLayananCarousel();
     }
-    
+
     function nextLayananSlide() {
       layananCurrentIndex = (layananCurrentIndex + 1) % layananTotalSlides;
       updateLayananCarousel();
     }
-    
+
     function prevLayananSlide() {
       layananCurrentIndex = (layananCurrentIndex - 1 + layananTotalSlides) % layananTotalSlides;
       updateLayananCarousel();
     }
-    
+
     // Event listeners
     if (layananNextBtn) {
       layananNextBtn.addEventListener('click', nextLayananSlide);
     }
-    
+
     if (layananPrevBtn) {
       layananPrevBtn.addEventListener('click', prevLayananSlide);
     }
-    
+
     // Auto slide (opsional)
     let layananAutoSlide = setInterval(nextLayananSlide, 5000);
-    
+
     // Hentikan auto slide saat hover
     layananCarousel.addEventListener('mouseenter', () => {
       clearInterval(layananAutoSlide);
     });
-    
+
     layananCarousel.addEventListener('mouseleave', () => {
       layananAutoSlide = setInterval(nextLayananSlide, 5000);
     });
@@ -203,11 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const galeriPrevBtn = document.querySelector('.galeri-nav.left');
   const galeriNextBtn = document.querySelector('.galeri-nav.right');
   const galeriIndicators = document.querySelector('.galeri-indicators');
-  
+
   if (galeriSlides.length > 0 && galeriIndicators) {
     let galeriCurrentIndex = 0;
     const galeriTotalSlides = galeriSlides.length;
-    
+
     // Buat indikator untuk galeri
     galeriSlides.forEach((_, index) => {
       const indicator = document.createElement('div');
@@ -218,13 +292,13 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       galeriIndicators.appendChild(indicator);
     });
-    
+
     const galeriIndicatorDots = document.querySelectorAll('.galeri-indicator');
-    
+
     function updateGaleriCarousel() {
       galeriSlides.forEach((slide, index) => {
         slide.classList.remove('active', 'prev', 'next', 'hidden');
-        
+
         if (index === galeriCurrentIndex) {
           slide.classList.add('active');
         } else if (index === (galeriCurrentIndex - 1 + galeriTotalSlides) % galeriTotalSlides) {
@@ -235,58 +309,55 @@ document.addEventListener('DOMContentLoaded', function() {
           slide.classList.add('hidden');
         }
       });
-      
-      // Update active indicator
-      galeriIndicatorDots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === galeriCurrentIndex);
-      });
+
+
     }
-    
+
     function goToGaleriSlide(index) {
       galeriCurrentIndex = index;
       updateGaleriCarousel();
     }
-    
+
     function nextGaleriSlide() {
       galeriCurrentIndex = (galeriCurrentIndex + 1) % galeriTotalSlides;
       updateGaleriCarousel();
     }
-    
+
     function prevGaleriSlide() {
       galeriCurrentIndex = (galeriCurrentIndex - 1 + galeriTotalSlides) % galeriTotalSlides;
       updateGaleriCarousel();
     }
-    
+
     // Event listeners untuk galeri
     if (galeriNextBtn) {
       galeriNextBtn.addEventListener('click', nextGaleriSlide);
     }
-    
+
     if (galeriPrevBtn) {
       galeriPrevBtn.addEventListener('click', prevGaleriSlide);
     }
-    
+
     // Keyboard navigation untuk galeri
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') prevGaleriSlide();
       if (e.key === 'ArrowRight') nextGaleriSlide();
     });
-    
+
     // Auto-rotation untuk galeri
     let galeriAutoRotate = setInterval(nextGaleriSlide, 5000);
-    
+
     // Pause auto-rotation on hover
     const galeriCarousel = document.querySelector('.galeri-carousel');
     if (galeriCarousel) {
       galeriCarousel.addEventListener('mouseenter', () => {
         clearInterval(galeriAutoRotate);
       });
-      
+
       galeriCarousel.addEventListener('mouseleave', () => {
         galeriAutoRotate = setInterval(nextGaleriSlide, 5000);
       });
     }
-    
+
     // Inisialisasi awal
     updateGaleriCarousel();
   }

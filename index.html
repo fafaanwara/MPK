@@ -26,9 +26,49 @@
   <!-- NAVIGASI -->
   <nav>
     <div class="brand">
-      <img src="image/logompk.jpg" alt="MPK SMKN 1 Dukuhturi">
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="sidebar-title">MPK</div>
+          <div class="sidebar-subtitle">SMKN 1 DUKUHTURI</div>
+        </div>
+
+        <div class="nav-menu">
+          <a href="#hero" class="nav-item active" onclick="closeSidebar()">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+          </a>
+          <a href="#tentang" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+          </a>
+          <a href="#layanan" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-cogs"></i>
+            <span>Layanan</span>
+          </a>
+          <a href="#galeri" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-image"></i>
+            <span>Galeri</span>
+          </a>
+          <a href="#kontak" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-envelope"></i>
+            <span>Kontak</span>
+          </a>
+          <a href="form.html" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-paper-plane"></i>
+            <span>Sampaikan Aspirasi</span>
+          </a>
+        </div>
+      </nav>
     </div>
-    <button id="menuToggle"><i class="fas fa-bars"></i></button>
+    
     <ul id="navMenu">
       <li><a href="#hero"><i class="fa-solid fa-house"></i> Beranda</a></li>
       <li><a href="#tentang"><i class="fas fa-info-circle"></i> Tentang</a></li>
@@ -246,7 +286,7 @@
         <div class="galeri-slide">
           <img src="image/galeri (10).jpg" alt="Alps">
           <div class="galeri-caption">
-             <h2>MPLS 2025</h2>
+            <h2>MPLS 2025</h2>
             <p>Sekolah ceria</p>
           </div>
         </div>
@@ -260,7 +300,7 @@
         <div class="galeri-slide">
           <img src="image/galeri (12).jpg" alt="Alps">
           <div class="galeri-caption">
-             <h2>LDK MPK</h2>
+            <h2>LDK MPK</h2>
             <p>Kepemimpinan</p>
           </div>
         </div>
