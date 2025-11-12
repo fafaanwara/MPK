@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulir Aspirasi MPK</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
     :root {
       --merah: #b92f2f;
@@ -33,13 +34,6 @@
     }
 
     body {
-      background:
-        linear-gradient(rgba(223, 222, 222, 0.5)),
-        url('fotbar1.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -47,18 +41,60 @@
       padding: 2rem 1rem;
       line-height: 1.6;
       position: relative;
+      overflow-x: hidden;
     }
 
-    /* Overlay untuk kontras */
-    body::before {
-      content: '';
-      position: absolute;
+    /* Particles.js container styling */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 0;
+      z-index: -1;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    /* Content wrapper */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* TOMBOL KEMBALI */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200, 0, 0, 0.95);
+      color: var(--putih);
+      padding: 12px 20px;
+      border: 2px solid var(--merah);
+      border-radius: var(--radius-bulat);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transisi);
+      box-shadow: var(--bayangan);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-back:hover {
+      color: var(--putih);
+      transform: translateY(-5px);
+      box-shadow: var(--bayangan-hover);
+    }
+
+    .btn-back i {
+      font-size: 1.1rem;
+      transition: var(--transisi);
     }
 
     /* SECTION ASPIRASI */
@@ -67,18 +103,17 @@
       max-width: 800px;
       margin: 0 auto;
       position: relative;
-      z-index: 1;
     }
 
     .judul {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 2rem;
-      color: var(--putih);
+      color: var(--merahGelap);
       position: relative;
       padding-bottom: 1rem;
       font-weight: 700;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8);
     }
 
     .judul::after {
@@ -89,7 +124,7 @@
       transform: translateX(-50%);
       width: 100px;
       height: 4px;
-      background: var(--putih);
+      background: var(--merah);
       border-radius: var(--radius);
     }
 
@@ -548,7 +583,16 @@
     @media (max-width: 768px) {
       body {
         padding: 1rem;
-        background-attachment: scroll;
+      }
+
+      .back-button {
+        top: 15px;
+        left: 15px;
+      }
+
+      .btn-back {
+        padding: 10px 16px;
+        font-size: 0.9rem;
       }
 
       .judul {
@@ -592,6 +636,24 @@
     }
 
     @media (max-width: 480px) {
+      .back-button {
+        top: 10px;
+        left: 10px;
+      }
+
+      .btn-back {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+
+      .btn-back span {
+        display: none;
+      }
+
+      .btn-back i {
+        margin-right: 0;
+      }
+
       .judul {
         font-size: 1.8rem;
       }
@@ -627,114 +689,217 @@
 </head>
 
 <body>
-  <!-- ASPIRASI -->
-  <section id="aspirasi">
-    <h2 class="judul">Formulir Aspirasi</h2>
-    <div id="alert" class="alert"></div>
-    <div class="form-container">
-      <form id="formAspirasi">
-        <div class="form-group">
-          <label for="nama"><i class="fas fa-user"></i> Nama Lengkap</label>
-          <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap kamu" required>
-        </div>
-        <div class="form-group">
-          <label for="kelas"><i class="fas fa-graduation-cap"></i> Kelas / Jurusan</label>
-          <select id="kelas" name="kelas" required>
-            <option value="">-- Pilih Kelas --</option>
-            <option>X AKL 1</option>
-            <option>X AKL 2</option>
-            <option>X AKL 3</option>
-            <option>X AKL 4</option>
-            <option>X MPLB 1</option>
-            <option>X MPLB 2</option>
-            <option>X MPLB 3</option>
-            <option>X PM 1</option>
-            <option>X PM 2</option>
-            <option>X PM 3</option>
-            <option>X DKV 1</option>
-            <option>X DKV 2</option>
-            <option>X DKV 3</option>
-            <option>X TJKT 1</option>
-            <option>X TJKT 2</option>
-            <option>X PPLG</option>
-            <option>XI AK 1</option>
-            <option>XI AK 2</option>
-            <option>XI AK 3</option>
-            <option>XI AK 4</option>
-            <option>XI MP 1</option>
-            <option>XI MP 2</option>
-            <option>XI MP 3</option>
-            <option>XI BR 1</option>
-            <option>XI BR 2</option>
-            <option>XI BD</option>
-            <option>XI DKV 1</option>
-            <option>XI DKV 2</option>
-            <option>XI DKV 3</option>
-            <option>XI TKJ 1</option>
-            <option>XI TKJ 2</option>
-            <option>XI RPL</option>
-            <option>XII AK 1</option>
-            <option>XII AK 2</option>
-            <option>XII AK 3</option>
-            <option>XII AK 4</option>
-            <option>XII MP 1</option>
-            <option>XII MP 2</option>
-            <option>XII MP 3</option>
-            <option>XII BR 1</option>
-            <option>XII BR 2</option>
-            <option>XII BD</option>
-            <option>XII DKV 1</option>
-            <option>XII DKV 2</option>
-            <option>XII DKV 3</option>
-            <option>XII TKJ 1</option>
-            <option>XII TKJ 2</option>
-            <option>XII RPL</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="kategori"><i class="fas fa-tag"></i> Kategori</label>
-          <select id="kategori" name="kategori" required>
-            <option value="">-- Pilih Kategori --</option>
-            <option>Event MPK/OSIS</option>
-            <option>Ekstrakurikuler</option>
-            <option>Lingkungan Kelas</option>
-            <option>Pengurus MPK/OSIS</option>
-            <option>Sarana Prasarana</option>
-            <option>Lainnya</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="isi"><i class="fas fa-edit"></i> Isi Aspirasi</label>
-          <textarea id="isi" name="isi" placeholder="Jelaskan aspirasi kamu secara singkat dan jelas..."
-            required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="saran"><i class="fas fa-lightbulb"></i> Saran (opsional)</label>
-          <textarea id="saran" name="saran"
-            placeholder="Jika ada, tuliskan saran atau ide kreatif yang kamu usulkan..."></textarea>
-        </div>
-        <button type="submit" class="btn">
-          <i class="fas fa-paper-plane"></i> Kirim Aspirasi
-        </button>
-      </form>
-    </div>
-  </section>
+  <!-- Particles.js Container -->
+  <div id="particles-js"></div>
 
-  <!-- WhatsApp Floating Button -->
-  <div class="whatsapp-float">
-    <a href="https://wa.me/6281779522854?text=Halo%2C%20saya%20ingin%20mengirim%20aspirasi%20atau%20bertanya%20tentang%20kegiatan%20sekolah..."
-      class="btn-whatsapp" target="_blank">
-      <i class="fab fa-whatsapp"></i>
-      <span>Tanya Admin</span>
-      <div class="whatsapp-tooltip">
-        Klik untuk bertanya langsung ke Admin MPK
-      </div>
+  <!-- Tombol Kembali -->
+  <div class="back-button">
+    <a href="portal.html" class="btn-back">
+      <i class="fas fa-arrow-left"></i>
     </a>
   </div>
 
+  <!-- Content wrapper -->
+  <div class="content-wrapper">
+    <!-- ASPIRASI -->
+    <section id="aspirasi">
+      <h2 class="judul">Formulir Aspirasi</h2>
+      <div id="alert" class="alert"></div>
+      <div class="form-container">
+        <form id="formAspirasi">
+          <div class="form-group">
+            <label for="nama"><i class="fas fa-user"></i> Nama Lengkap</label>
+            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap kamu" required>
+          </div>
+          <div class="form-group">
+            <label for="kelas"><i class="fas fa-graduation-cap"></i> Kelas / Jurusan</label>
+            <select id="kelas" name="kelas" required>
+              <option value="">-- Pilih Kelas --</option>
+              <option>X AKL 1</option>
+              <option>X AKL 2</option>
+              <option>X AKL 3</option>
+              <option>X AKL 4</option>
+              <option>X MPLB 1</option>
+              <option>X MPLB 2</option>
+              <option>X MPLB 3</option>
+              <option>X PM 1</option>
+              <option>X PM 2</option>
+              <option>X PM 3</option>
+              <option>X DKV 1</option>
+              <option>X DKV 2</option>
+              <option>X DKV 3</option>
+              <option>X TJKT 1</option>
+              <option>X TJKT 2</option>
+              <option>X PPLG</option>
+              <option>XI AK 1</option>
+              <option>XI AK 2</option>
+              <option>XI AK 3</option>
+              <option>XI AK 4</option>
+              <option>XI MP 1</option>
+              <option>XI MP 2</option>
+              <option>XI MP 3</option>
+              <option>XI BR 1</option>
+              <option>XI BR 2</option>
+              <option>XI BD</option>
+              <option>XI DKV 1</option>
+              <option>XI DKV 2</option>
+              <option>XI DKV 3</option>
+              <option>XI TKJ 1</option>
+              <option>XI TKJ 2</option>
+              <option>XI RPL</option>
+              <option>XII AK 1</option>
+              <option>XII AK 2</option>
+              <option>XII AK 3</option>
+              <option>XII AK 4</option>
+              <option>XII MP 1</option>
+              <option>XII MP 2</option>
+              <option>XII MP 3</option>
+              <option>XII BR 1</option>
+              <option>XII BR 2</option>
+              <option>XII BD</option>
+              <option>XII DKV 1</option>
+              <option>XII DKV 2</option>
+              <option>XII DKV 3</option>
+              <option>XII TKJ 1</option>
+              <option>XII TKJ 2</option>
+              <option>XII RPL</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="kategori"><i class="fas fa-tag"></i> Kategori</label>
+            <select id="kategori" name="kategori" required>
+              <option value="">-- Pilih Kategori --</option>
+              <option>Event MPK/OSIS</option>
+              <option>Ekstrakurikuler</option>
+              <option>Lingkungan Kelas</option>
+              <option>Pengurus MPK/OSIS</option>
+              <option>Sarana Prasarana</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="isi"><i class="fas fa-edit"></i> Isi Aspirasi</label>
+            <textarea id="isi" name="isi" placeholder="Jelaskan aspirasi kamu secara singkat dan jelas..."
+              required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="saran"><i class="fas fa-lightbulb"></i> Saran (opsional)</label>
+            <textarea id="saran" name="saran"
+              placeholder="Jika ada, tuliskan saran atau ide kreatif yang kamu usulkan..."></textarea>
+          </div>
+          <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i> Kirim Aspirasi
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+      <a href="https://wa.me/6281779522854?text=Halo%2C%20saya%20ingin%20mengirim%20aspirasi%20atau%20bertanya%20tentang%20kegiatan%20sekolah..."
+        class="btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Tanya Admin</span>
+        <div class="whatsapp-tooltip">
+          Klik untuk bertanya langsung ke Admin MPK
+        </div>
+      </a>
+    </div>
+  </div>
+
   <script>
-    // Form Aspirasi Handler
+    // Inisialisasi particles.js
     document.addEventListener('DOMContentLoaded', function () {
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: "#b92f2f"
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 2,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#b92f2f",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            push: {
+              particles_nb: 4
+            }
+          }
+        },
+        retina_detect: true
+      });
+
+      // Form Aspirasi Handler (FUNGSI ASLI TIDAK DIUBAH)
       const form = document.getElementById('formAspirasi');
       const alertBox = document.getElementById('alert');
 

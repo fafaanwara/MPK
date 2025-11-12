@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Aspirasi Sekolah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -14,8 +15,7 @@
             --danger-color: #e74c3c;
             --light-color: #ecf0f1;
             --dark-color: #34495e;
-            --merah: #b92f2f;
-            --merahGelap: #8c1f1f;
+            --merah: #b01200;
         }
 
         * {
@@ -29,6 +29,24 @@
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
+            position: relative;
+        }
+
+        /* Particles.js container styling */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+        }
+
+        /* Content container */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
         }
 
         .container {
@@ -41,8 +59,9 @@
         header {
             background-color: var(--merah);
             color: white;
-            padding: 1rem 0;
+            padding: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .header-content {
@@ -50,6 +69,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
 
         .logo {
             display: flex;
@@ -79,20 +99,22 @@
         }
 
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgb(128, 0, 0);
         }
 
         .hero {
-            color: rgb(0, 0, 0);
+            background-color: rgba(52, 152, 219, 0.85);
+            color: white;
             padding: 3rem 0;
             text-align: center;
             margin-bottom: 2rem;
             border-radius: 8px;
+            backdrop-filter: blur(5px);
         }
 
         .hero h2 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rems
+            margin-bottom: 1rem;
         }
 
         .hero p {
@@ -105,18 +127,20 @@
             display: inline-block;
             background-color: var(--secondary-color);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             text-decoration: none;
             font-size: 1rem;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             margin-top: 1rem;
         }
 
         .btn:hover {
             background-color: var(--dark-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn-primary {
@@ -127,98 +151,108 @@
             background-color: #2980b9;
         }
 
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
         .aspirations-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
             margin-top: 2rem;
+            text-align: center;
         }
 
-        .aspiration-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            transition: transform 0.3s;
-        }
-
-        .aspiration-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .aspiration-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+        .section-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
         }
 
-        .aspiration-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .no-aspirations {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 60px 30px;
+            text-align: center;
+            margin: 40px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .no-aspirations-icon {
+            font-size: 5rem;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+
+        .no-aspirations h3 {
+            font-size: 1.8rem;
             color: var(--secondary-color);
+            margin-bottom: 15px;
         }
 
-        .aspiration-date {
-            font-size: 0.9rem;
+        .no-aspirations p {
+            font-size: 1.1rem;
             color: #7f8c8d;
-        }
-
-        .aspiration-content {
-            margin-bottom: 15px;
-        }
-
-        .aspiration-response {
-            background-color: var(--light-color);
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-
-        .response-title {
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-bottom: 5px;
-        }
-
-        .aspiration-action {
-            background-color: #e8f4fc;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-
-        .action-title {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .status-pending {
-            background-color: var(--warning-color);
-            color: white;
-        }
-
-        .status-completed {
-            background-color: var(--success-color);
-            color: white;
+            max-width: 600px;
+            margin: 0 auto 30px;
         }
 
         footer {
             background-color: var(--merah);
             color: white;
             text-align: center;
+            padding: 1.5rem 0;
             margin-top: 3rem;
+            position: relative;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
         }
 
         @media (max-width: 768px) {
@@ -239,64 +273,182 @@
             .hero h2 {
                 font-size: 2rem;
             }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <h1>Portal Aspirasi MPK</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="bp/bpsuaraaspirasi.html">Buku panduan</a></li>
-                    <li><a href="#form">Ajukan Aspirasi</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Particles.js Container -->
+    <div id="particles-js"></div>
 
-    <main class="container">
-        <section class="hero">
-            <h2>Suara Anda untuk Sekolah yang Lebih Baik</h2>
-            <p>Portal ini menjadi wadah bagi seluruh warga sekolah untuk menyampaikan aspirasi, saran, dan kritik
-                membangun demi kemajuan sekolah kita bersama.</p>
-            <a href="#form" class="btn btn-primary">Ajukan Aspirasi</a>
-        </section>
-
-        <section id="aspirations">
-            <h2>Aspirasi Terbaru</h2>
-            <div class="aspirations-container">
-                <!-- Aspirasi 1 -->
-                <div class="aspiration-card">
-                    <div class="aspiration-header">
-                        <div class="aspiration-title">Perbaikan Fasilitas Perpustakaan</div>
-                        <div class="status status-completed">Selesai</div>
-                    </div>
-                    <div class="aspiration-date">12 Oktober 2023</div>
-                    <div class="aspiration-content">
-                        <p>Saya mengusulkan untuk memperbaiki fasilitas perpustakaan sekolah, terutama penambahan
-                            koleksi buku terbaru dan perbaikan sistem pendingin ruangan.</p>
-                    </div>
-                    <div class="aspiration-response">
-                        <div class="response-title">Tanggapan Sekolah:</div>
-                        <p>Terima kasih atas aspirasinya. Kami akan mengalokasikan dana untuk penambahan koleksi buku
-                            dan perbaikan AC di perpustakaan pada semester depan.</p>
-                    </div>
-                    <div class="aspiration-action">
-                        <div class="action-title">Aksi Nyata:</div>
-                        <p>Sudah dilakukan penambahan 200 buku baru dan perbaikan 2 unit AC di perpustakaan sekolah.</p>
-                    </div>
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <h1>Portal Aspirasi MPK</h1>
                 </div>
+            </div>
+        </header>
 
-             
-    </main>
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Portal Aspirasi Sekolah. Semua hak dilindungi.</p>
-        </div>
-    </footer>
+        <main class="container">
+            <section class="hero">
+                <h2>Suara Anda untuk Sekolah yang Lebih Baik</h2>
+                <p>Portal ini menjadi wadah bagi seluruh warga sekolah untuk menyampaikan aspirasi, saran, dan kritik
+                    membangun demi kemajuan sekolah kita bersama.</p>
+                <nav>
+                    <ul>
+                        <li><a href="#form" class="btn btn-primary btn-small">Buku Panduan</a></li>
+                        <li><a href="#form" class="btn btn-primary btn-small">Ajukan Aspirasi</a></li>
+                    </ul>
+                </nav>
+            </section>
+
+
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Sampaikan Aspirasi</h3>
+                    <p>Berikan masukan, saran, atau kritik membangun untuk kemajuan sekolah kita.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Dapatkan Tanggapan</h3>
+                    <p>Setiap aspirasi akan mendapatkan tanggapan dari pihak sekolah.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Lihat Aksi Nyata</h3>
+                    <p>Ikuti perkembangan aksi nyata yang dilakukan sekolah berdasarkan aspirasi.</p>
+                </div>
+            </section>
+
+            <section id="aspirations">
+                <h2 class="section-title">Aspirasi Terbaru</h2>
+                <div class="no-aspirations">
+                    <div class="no-aspirations-icon">
+                        <i class="far fa-comment-dots"></i>
+                    </div>
+                    <h3>Belum Ada Aspirasi</h3>
+                    <p>Sepertinya belum ada yang mengajukan aspirasi. Jadilah yang pertama untuk menyampaikan pendapat
+                        Anda
+                        demi kemajuan sekolah kita!</p>
+                    <a href="#form" class="btn btn-primary btn-large">Ajukan Aspirasi Pertama</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Portal Aspirasi Sekolah. Semua hak dilindungi.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // Inisialisasi particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#b92f2f"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#b92f2f",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
 </body>
+
 </html>
