@@ -45,9 +45,17 @@
             <i class="fas fa-home"></i>
             <span>Beranda</span>
           </a>
+          <a href="portal.html" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-paper-plane"></i>
+            <span>Portal Aspirasi</span>
+          </a>
           <a href="#tentang" class="nav-item" onclick="closeSidebar()">
             <i class="fas fa-info-circle"></i>
             <span>Tentang</span>
+          </a>
+          <a href="#bp" class="nav-item" onclick="closeSidebar()">
+            <i class="fas fa-cogs"></i>
+            <span>Buku Program unggulan</span>
           </a>
           <a href="#layanan" class="nav-item" onclick="closeSidebar()">
             <i class="fas fa-cogs"></i>
@@ -61,20 +69,13 @@
             <i class="fas fa-envelope"></i>
             <span>Kontak</span>
           </a>
-          <a href="form.html" class="nav-item" onclick="closeSidebar()">
-            <i class="fas fa-paper-plane"></i>
-            <span>Sampaikan Aspirasi</span>
-          </a>
-          <a href="portal.html" class="nav-item" onclick="closeSidebar()">
-            <i class="fas fa-paper-plane"></i>
-            <span>Portal Aspirasi</span>
-          </a>
         </div>
       </nav>
     </div>
 
     <ul id="navMenu">
       <li><a href="#hero"><i class="fa-solid fa-house"></i> Beranda</a></li>
+      <li><a href="portal.html"><i class="fas fa-envelope"></i> Portal aspirasi</a></li>
       <li><a href="#tentang"><i class="fas fa-info-circle"></i> Tentang</a></li>
       <li><a href="#layanan"><i class="fas fa-cogs"></i> Layanan</a></li>
       <li><a href="#galeri"><i class="fa-solid fa-image"></i> Galeri</a></li>
@@ -135,8 +136,8 @@
       </div>
     </section>
     <!-- buku progja -->
-    <h2 class="judul" style="padding-top: 3rem">Buku Panduan Program Kerja MPK</h2>
-    <div class="container">
+    <h2 class="judul" id="bp">Buku Panduan Program Kerja unggulan MPK</h2>
+    <div class=" container">
       <p>“Ini adalah beberapa program kerja unggulan kami — wujud nyata dari komitmen kami untuk berkontribusi,
         berinovasi, dan membawa perubahan positif di lingkungan sekitar. Setiap program dirancang dengan semangat
         kebersamaan dan tujuan membangun generasi yang lebih unggul.
@@ -398,8 +399,8 @@
       <!-- Peta Lokasi di Tengah -->
       <div class="footer-map-container">
         <div class="double-logo">
-          <img src="https://via.placeholder.com/85x85/8c1f1f/ffffff?text=MPK" alt="Logo MPK">
-          <img src="https://via.placeholder.com/85x85/1a1a2e/ffffff?text=SMEKAR" alt="Logo SMKN 1 Dukuhturi">
+          <img src="image/logompkbgrmv.png" alt="Logo MPK">
+          <img src="image/logosmekarbgrmv.png" alt="Logo SMKN 1 Dukuhturi">
         </div>
         <div class="footer-map">
           <iframe
@@ -461,7 +462,6 @@
     </div>
     <div class="footer-bottom">
       <p>Copyright © <span id="thn"></span> MPK SMKN 1 Dukuhturi. All Rights Reserved</p>
-      <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk Kemajuan Sekolah</p>
     </div>
   </footer>
   <!-- Particles.js Library -->
