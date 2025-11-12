@@ -83,8 +83,7 @@
         }
 
         .hero {
-            background-color: var(--primary-color);
-            color: white;
+            color: rgb(0, 0, 0);
             padding: 3rem 0;
             text-align: center;
             margin-bottom: 2rem;
@@ -93,7 +92,7 @@
 
         .hero h2 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rems
         }
 
         .hero p {
@@ -210,54 +209,15 @@
             color: white;
         }
 
-        .status-processed {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
         .status-completed {
             background-color: var(--success-color);
             color: white;
         }
 
-        .form-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 800px;
-            margin: 2rem auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
         footer {
-            background-color: var(--secondary-color);
+            background-color: var(--merah);
             color: white;
             text-align: center;
-            padding: 1.5rem 0;
             margin-top: 3rem;
         }
 
@@ -331,111 +291,12 @@
                     </div>
                 </div>
 
-                <!-- Aspirasi 2 -->
-                <div class="aspiration-card">
-                    <div class="aspiration-header">
-                        <div class="aspiration-title">Peningkatan Keamanan Parkir</div>
-                        <div class="status status-processed">Diproses</div>
-                    </div>
-                    <div class="aspiration-date">5 November 2023</div>
-                    <div class="aspiration-content">
-                        <p>Saya mengusulkan peningkatan keamanan area parkir dengan penambahan CCTV dan penjaga keamanan
-                            khusus di jam-jam tertentu.</p>
-                    </div>
-                    <div class="aspiration-response">
-                        <div class="response-title">Tanggapan Sekolah:</div>
-                        <p>Aspirasi ini sedang kami proses. Kami akan melakukan survei untuk menentukan titik-titik
-                            strategis pemasangan CCTV.</p>
-                    </div>
-                    <div class="aspiration-action">
-                        <div class="action-title">Aksi Nyata:</div>
-                        <p>Sedang dalam proses pengadaan peralatan CCTV dan perekrutan petugas keamanan tambahan.</p>
-                    </div>
-                </div>
-
-                <!-- Aspirasi 3 -->
-                <div class="aspiration-card">
-                    <div class="aspiration-header">
-                        <div class="aspiration-title">Kegiatan Ekstrakurikuler Baru</div>
-                        <div class="status status-pending">Menunggu</div>
-                    </div>
-                    <div class="aspiration-date">20 November 2023</div>
-                    <div class="aspiration-content">
-                        <p>Saya mengusulkan penambahan kegiatan ekstrakurikuler coding dan robotika untuk meningkatkan
-                            kemampuan teknologi siswa.</p>
-                    </div>
-                    <div class="aspiration-response">
-                        <div class="response-title">Tanggapan Sekolah:</div>
-                        <p>Kami akan mempertimbangkan usulan ini dalam rapat dewan guru bulan depan.</p>
-                    </div>
-                    <div class="aspiration-action">
-                        <div class="action-title">Aksi Nyata:</div>
-                        <p>Belum ada aksi nyata. Menunggu keputusan rapat dewan guru.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="form" class="form-container">
-            <h2>Formulir Pengajuan Aspirasi</h2>
-            <form id="aspirationForm">
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" id="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="class">Kelas/Jabatan</label>
-                    <input type="text" id="class" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="category">Kategori Aspirasi</label>
-                    <select id="category" class="form-control" required>
-                        <option value="">Pilih Kategori</option>
-                        <option value="fasilitas">Fasilitas Sekolah</option>
-                        <option value="kurikulum">Kurikulum & Pembelajaran</option>
-                        <option value="ekstrakurikuler">Kegiatan Ekstrakurikuler</option>
-                        <option value="keamanan">Keamanan & Kebersihan</option>
-                        <option value="lainnya">Lainnya</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="title">Judul Aspirasi</label>
-                    <input type="text" id="title" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="content">Isi Aspirasi</label>
-                    <textarea id="content" class="form-control" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Kirim Aspirasi</button>
-            </form>
-        </section>
+             
     </main>
-
     <footer>
         <div class="container">
             <p>&copy; 2023 Portal Aspirasi Sekolah. Semua hak dilindungi.</p>
         </div>
     </footer>
-
-    <script>
-        document.getElementById('aspirationForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Ambil nilai dari form
-            const name = document.getElementById('name').value;
-            const title = document.getElementById('title').value;
-
-            // Tampilkan pesan sukses
-            alert(`Terima kasih ${name}! Aspirasi "${title}" telah berhasil dikirim.`);
-
-            // Reset form
-            document.getElementById('aspirationForm').reset();
-        });
-    </script>
 </body>
-
 </html>
