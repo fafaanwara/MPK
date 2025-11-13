@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Elegan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .dropdown-section {
+            margin-bottom: 40px;
+        }
+        
+        .dropdown-title {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        /* Dropdown Base Styles */
+        .dropdown {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .dropdown-btn {
+            width: 100%;
+            padding: 15px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dropdown-btn:hover {
+            border-color: #6c63ff;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
+        }
+        
+        .dropdown-btn:focus {
+            outline: none;
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+        
+        .dropdown-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-btn.active i {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .dropdown-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+        
+        .dropdown-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: #f8f9ff;
+            color: #6c63ff;
+        }
+        
+        .dropdown-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Styling untuk berbagai variasi dropdown */
+        .dropdown-primary .dropdown-btn {
+            background: #6c63ff;
+            color: white;
+            border: none;
+        }
+        
+        .dropdown-primary .dropdown-btn:hover {
+            background: #5a52d5;
+        }
+        
+        .dropdown-rounded .dropdown-btn {
+            border-radius: 50px;
+        }
+        
+        .dropdown-rounded .dropdown-content {
+            border-radius: 20px;
+        }
+        
+        .dropdown-minimal .dropdown-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .dropdown-minimal .dropdown-btn:hover {
+            border-color: #6c63ff;
+        }
+        
+        .dropdown-minimal .dropdown-content {
+            border-radius: 0 0 10px 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .dropdown-btn {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .dropdown-item {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">        
+        <div class="dropdown-section">
+            <h3 class="dropdown-title">Dropdown dengan Sudut Membulat</h3>
+            <div class="dropdown dropdown-rounded">
+                <button class="dropdown-btn">
+                    Pilih bahasa
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <i class="fas fa-globe"></i>
+                        Bahasa Indonesia
+                    </div>
+                    <div class="dropdown-item">
+                        <i class="fas fa-globe"></i>
+                        English
+                    </div>
+                    <div class="dropdown-item">
+                        <i class="fas fa-globe"></i>
+                        日本語
+                    </div>
+                    <div class="dropdown-item">
+                        <i class="fas fa-globe"></i>
+                        Français
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const btn = dropdown.querySelector('.dropdown-btn');
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Tutup semua dropdown yang terbuka
+                    document.querySelectorAll('.dropdown-content.show').forEach(openContent => {
+                        if (openContent !== content) {
+                            openContent.classList.remove('show');
+                            openContent.parentNode.querySelector('.dropdown-btn').classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle dropdown yang diklik
+                    content.classList.toggle('show');
+                    btn.classList.toggle('active');
+                });
+                
+                // Tambahkan event listener untuk setiap item dropdown
+                const items = content.querySelectorAll('.dropdown-item');
+                items.forEach(item => {
+                    item.addEventListener('click', function() {
+                        // Update teks tombol dengan item yang dipilih
+                        btn.innerHTML = this.innerHTML + '<i class="fas fa-chevron-down"></i>';
+                        content.classList.remove('show');
+                        btn.classList.remove('active');
+                    });
+                });
+            });
+            
+            // Tutup dropdown saat klik di luar
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.dropdown-content.show').forEach(content => {
+                    content.classList.remove('show');
+                    content.parentNode.querySelector('.dropdown-btn').classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -191,6 +191,7 @@ window.addEventListener('scroll', updateActiveNav);
 
 // Initialize active nav on page load
 document.addEventListener('DOMContentLoaded', updateActiveNav);
+
 // Efek scroll untuk navbar
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
@@ -199,21 +200,6 @@ window.addEventListener('scroll', () => {
   } else {
     nav.classList.remove('scrolled');
   }
-});
-
-let scrollTimeout;
-
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector("nav");
-  
-  // Tambahkan kelas saat scroll
-  nav.classList.add("scrolled");
-
-  // Hapus kelas setelah scroll berhenti (misalnya 300ms setelah berhenti)
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    nav.classList.remove("scrolled");
-  }, 300);
 });
 
 // ===========================================
@@ -246,6 +232,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateLayananCarousel() {
       layananCarousel.style.transform = `translateX(-${layananCurrentIndex * 100}%)`;
+
+      // Update active dot
+      layananDots.forEach((dot, index) => {
+        if (index === layananCurrentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
     }
 
     function goToLayananSlide(index) {
@@ -286,135 +281,102 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ===========================================
-  // CAROUSEL GALERI
+  // CAROUSEL GALERI - IMPROVED
   // ===========================================
-   
+  const galeriSlides = document.querySelectorAll('.galeri-slide');
+  const galeriPrevBtn = document.querySelector('.galeri-nav.left');
+  const galeriNextBtn = document.querySelector('.galeri-nav.right');
+  const galeriIndicators = document.querySelector('.galeri-indicators');
 
-// ===========================================
-// SCROLL HORIZONTAL TERPISAH
-// ===========================================
-const horizontalContainer = document.getElementById('horizontalContainer');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const horizontalNav = document.getElementById('horizontalNav');
+  if (galeriSlides.length > 0 && galeriIndicators) {
+    let galeriCurrentIndex = 0;
+    const galeriTotalSlides = galeriSlides.length;
 
-if (horizontalContainer && horizontalNav) {
-  const panels = document.querySelectorAll('.horizontal-panel');
-  const totalPanels = panels.length;
-  let currentPanel = 0;
-
-  // Buat navigasi dots
-  panels.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.classList.add('horizontal-dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-      goToPanel(index);
+    // Buat indikator untuk galeri
+    galeriSlides.forEach((_, index) => {
+      const indicator = document.createElement('div');
+      indicator.classList.add('galeri-indicator');
+      if (index === 0) indicator.classList.add('active');
+      indicator.addEventListener('click', () => {
+        goToGaleriSlide(index);
+      });
+      galeriIndicators.appendChild(indicator);
     });
-    horizontalNav.appendChild(dot);
-  });
 
-  const dots = document.querySelectorAll('.horizontal-dot');
+    const galeriIndicatorDots = document.querySelectorAll('.galeri-indicator');
 
-  // Fungsi untuk pergi ke panel tertentu
-  function goToPanel(panelIndex) {
-    currentPanel = panelIndex;
-    const translateX = -currentPanel * 100;
-    horizontalContainer.style.transform = `translateX(${translateX}%)`;
+    function updateGaleriCarousel() {
+      galeriSlides.forEach((slide, index) => {
+        slide.classList.remove('active', 'prev', 'next');
 
-    // Update status aktif dot
-    dots.forEach((dot, index) => {
-      if (index === currentPanel) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  }
+        if (index === galeriCurrentIndex) {
+          slide.classList.add('active');
+        } else if (index === (galeriCurrentIndex - 1 + galeriTotalSlides) % galeriTotalSlides) {
+          slide.classList.add('prev');
+        } else if (index === (galeriCurrentIndex + 1) % galeriTotalSlides) {
+          slide.classList.add('next');
+        }
+      });
 
-  // Event listener untuk tombol panah
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (currentPanel > 0) {
-        goToPanel(currentPanel - 1);
-      }
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (currentPanel < totalPanels - 1) {
-        goToPanel(currentPanel + 1);
-      }
-    });
-  }
-
-  // Event listener untuk keyboard
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      if (currentPanel > 0) {
-        goToPanel(currentPanel - 1);
-      }
-    } else if (e.key === 'ArrowRight') {
-      if (currentPanel < totalPanels - 1) {
-        goToPanel(currentPanel + 1);
-      }
+      // Update active indicator
+      galeriIndicatorDots.forEach((dot, index) => {
+        if (index === galeriCurrentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
     }
-  });
 
-  // Event listener untuk swipe pada perangkat mobile
-  let startX = 0;
-  let endX = 0;
-
-  horizontalContainer.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  horizontalContainer.addEventListener('touchend', (e) => {
-    endX = e.changedTouches[0].clientX;
-    handleSwipe();
-  });
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-
-    if (startX - endX > swipeThreshold) {
-      // Swipe kiri
-      if (currentPanel < totalPanels - 1) {
-        goToPanel(currentPanel + 1);
-      }
-    } else if (endX - startX > swipeThreshold) {
-      // Swipe kanan
-      if (currentPanel > 0) {
-        goToPanel(currentPanel - 1);
-      }
+    function goToGaleriSlide(index) {
+      galeriCurrentIndex = index;
+      updateGaleriCarousel();
     }
+
+    function nextGaleriSlide() {
+      galeriCurrentIndex = (galeriCurrentIndex + 1) % galeriTotalSlides;
+      updateGaleriCarousel();
+    }
+
+    function prevGaleriSlide() {
+      galeriCurrentIndex = (galeriCurrentIndex - 1 + galeriTotalSlides) % galeriTotalSlides;
+      updateGaleriCarousel();
+    }
+
+    // Event listeners untuk galeri
+    if (galeriNextBtn) {
+      galeriNextBtn.addEventListener('click', nextGaleriSlide);
+    }
+
+    if (galeriPrevBtn) {
+      galeriPrevBtn.addEventListener('click', prevGaleriSlide);
+    }
+
+    // Keyboard navigation untuk galeri
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevGaleriSlide();
+      if (e.key === 'ArrowRight') nextGaleriSlide();
+    });
+
+    // Auto-rotation untuk galeri
+    let galeriAutoRotate = setInterval(nextGaleriSlide, 5000);
+
+    // Pause auto-rotation on hover
+    const galeriCarousel = document.querySelector('.galeri-carousel');
+    if (galeriCarousel) {
+      galeriCarousel.addEventListener('mouseenter', () => {
+        clearInterval(galeriAutoRotate);
+      });
+
+      galeriCarousel.addEventListener('mouseleave', () => {
+        galeriAutoRotate = setInterval(nextGaleriSlide, 5000);
+      });
+    }
+
+    // Inisialisasi awal
+    updateGaleriCarousel();
   }
-
-  // Auto slide untuk horizontal section
-  let autoSlideInterval = setInterval(() => {
-    if (currentPanel < totalPanels - 1) {
-      goToPanel(currentPanel + 1);
-    } else {
-      goToPanel(0);
-    }
-  }, 5000);
-
-  // Hentikan auto slide saat user berinteraksi
-  horizontalContainer.addEventListener('mouseenter', () => {
-    clearInterval(autoSlideInterval);
-  });
-
-  horizontalContainer.addEventListener('mouseleave', () => {
-    autoSlideInterval = setInterval(() => {
-      if (currentPanel < totalPanels - 1) {
-        goToPanel(currentPanel + 1);
-      } else {
-        goToPanel(0);
-      }
-    }, 5000);
-  });
-}
+});
 
 // Animasi saat elemen masuk ke viewport
 const observerOptions = {
@@ -469,25 +431,46 @@ if (hero) {
   setInterval(changeBackground, 5000);
 }
 
-// Tambahkan class saat tombol ditekan (untuk mobile)
-document.querySelectorAll('.btn').forEach(button => {
-  // Untuk touch devices
-  button.addEventListener('touchstart', function () {
-    this.style.transform = 'scale(0.95)';
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+    const btn = dropdown.querySelector('.dropdown-btn');
+    const content = dropdown.querySelector('.dropdown-content');
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Tutup semua dropdown yang terbuka
+      document.querySelectorAll('.dropdown-content.show').forEach(openContent => {
+        if (openContent !== content) {
+          openContent.classList.remove('show');
+          openContent.parentNode.querySelector('.dropdown-btn').classList.remove('active');
+        }
+      });
+
+      // Toggle dropdown yang diklik
+      content.classList.toggle('show');
+      btn.classList.toggle('active');
+    });
+
+    // Tambahkan event listener untuk setiap item dropdown
+    const items = content.querySelectorAll('.dropdown-item');
+    items.forEach(item => {
+      item.addEventListener('click', function () {
+        // Update teks tombol dengan item yang dipilih
+        btn.innerHTML = this.innerHTML + '<i class="fas fa-chevron-down"></i>';
+        content.classList.remove('show');
+        btn.classList.remove('active');
+      });
+    });
   });
 
-  button.addEventListener('touchend', function () {
-    this.style.transform = 'scale(1)';
-  });
-
-  // Untuk devices dengan stylus/pen
-  button.addEventListener('pointerdown', function () {
-    if (window.matchMedia("(pointer: coarse)").matches) {
-      this.style.transform = 'scale(0.95)';
-    }
-  });
-
-  button.addEventListener('pointerup', function () {
-    this.style.transform = 'scale(1)';
+  // Tutup dropdown saat klik di luar
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.dropdown-content.show').forEach(content => {
+      content.classList.remove('show');
+      content.parentNode.querySelector('.dropdown-btn').classList.remove('active');
+    });
   });
 });
