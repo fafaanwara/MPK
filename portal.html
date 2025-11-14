@@ -22,6 +22,8 @@
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
             --border-radius: 12px;
+            --merah: #b92f2f;
+            --merahGelap: #8c1f1f;
         }
 
         * {
@@ -64,14 +66,15 @@
             justify-content: center;
             width: 50px;
             height: 50px;
-            background: rgba(231, 76, 60, 0.9);
+            background: rgb(255, 25, 0);
             color: var(--white);
             border-radius: 50%;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
-            box-shadow: var(--shadow);
             backdrop-filter: blur(10px);
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+            text-align: justify;
         }
 
         .btn-back:hover {
@@ -90,15 +93,16 @@
         }
 
         .container {
-            width: 90%;
+            width: 92%;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 50px;
+            margin-top: 3rem;
+
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9) 0%, rgba(41, 128, 185, 0.9) 100%);
+            background: #F46E61;
             color: white;
             padding: 4rem 0;
             text-align: center;
@@ -110,15 +114,15 @@
 
         .hero h2 {
             font-size: 2.8rem;
-            margin-bottom: 1.5rem;
             font-weight: 700;
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
-            margin: 0 auto 2rem;
+            margin: 0 auto;
             opacity: 0.9;
+            padding: 20px;
         }
 
         .hero-buttons {
@@ -246,7 +250,7 @@
         }
 
         /* Aspiration Cards */
-aspirations-container {
+        aspirations-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
@@ -332,6 +336,7 @@ aspirations-container {
             background-color: var(--success-color);
             color: white;
         }
+
         .no-aspirations {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: var(--border-radius);
@@ -365,11 +370,10 @@ aspirations-container {
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            background: var(--merahGelap);
             color: white;
             text-align: center;
-            padding: 2.5rem 0;
-            margin-top: auto;
+            padding: 30px;
         }
 
         footer p {
@@ -378,6 +382,10 @@ aspirations-container {
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+            }
+
             .hero h2 {
                 font-size: 2.2rem;
             }
@@ -408,11 +416,11 @@ aspirations-container {
             .hero {
                 padding: 3rem 1rem;
             }
-            
+
             .hero h2 {
                 font-size: 1.8rem;
             }
-            
+
             .btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
@@ -461,27 +469,30 @@ aspirations-container {
                         <i class="fas fa-bullhorn"></i>
                     </div>
                     <h3>Sampaikan Aspirasi</h3>
-                    <p>Berikan masukan, saran, atau kritik membangun untuk kemajuan sekolah kita dengan cara yang mudah dan terstruktur.</p>
+                    <p>Berikan masukan, saran, atau kritik membangun untuk kemajuan sekolah kita dengan cara yang mudah
+                        dan terstruktur.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-comments"></i>
                     </div>
                     <h3>Dapatkan Tanggapan</h3>
-                    <p>Setiap aspirasi akan mendapatkan tanggapan dari pihak sekolah dalam waktu yang telah ditentukan.</p>
+                    <p>Setiap aspirasi akan mendapatkan tanggapan dari pihak sekolah dalam waktu yang telah ditentukan.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <h3>Lihat Aksi Nyata</h3>
-                    <p>Ikuti perkembangan aksi nyata yang dilakukan sekolah berdasarkan aspirasi yang telah disampaikan.</p>
+                    <p>Ikuti perkembangan aksi nyata yang dilakukan sekolah berdasarkan aspirasi yang telah disampaikan.
+                    </p>
                 </div>
             </section>
 
             <section id="aspirations">
                 <h2 class="section-title">Aspirasi Terbaru</h2>
-                
+
                 <!-- Contoh Aspirasi yang Telah Tersampaikan -->
                 <div class="aspiration-card">
                     <div class="aspiration-header">
@@ -510,18 +521,19 @@ aspirations-container {
                         <i class="far fa-comment-dots"></i>
                     </div>
                     <h3>Masih Sedikit Aspirasi</h3>
-                    <p>Sepertinya masih sedikit yang mengajukan aspirasi. Jadilah bagian dari perubahan dengan menyampaikan pendapat
+                    <p>Sepertinya masih sedikit yang mengajukan aspirasi. Jadilah bagian dari perubahan dengan
+                        menyampaikan pendapat
                         Anda demi kemajuan sekolah kita!</p>
                     <a href="form.html" class="btn btn-primary btn-large">
-                        <i class="fas fa-plus"></i> Ajukan Aspirasi Anda
+                        <i class="fas fa-pen"></i> Ajukan Aspirasi Anda
                     </a>
                 </div>
             </section>
         </main>
 
         <footer>
-            <div class="container">
-                <p>&copy; 2023 Portal Aspirasi Sekolah. Semua hak dilindungi.</p>
+            <div>
+                <p>Copyright © <span id="thn"></span> MPK SMKN 1 Dukuhturi. All Rights Reserved</p>
             </div>
         </footer>
     </div>
