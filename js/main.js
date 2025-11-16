@@ -474,3 +474,60 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+// Fungsi untuk toggle dropdown di sidebar mobile
+function toggleDropdown(element) {
+  const dropdown = element.parentElement;
+  dropdown.classList.toggle('active');
+}
+
+// Fungsi untuk menutup semua dropdown saat sidebar ditutup
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.remove('active');
+  
+  // Tutup semua dropdown di sidebar
+  const dropdowns = sidebar.querySelectorAll('.dropdown-sidebar');
+  dropdowns.forEach(dropdown => {
+    dropdown.classList.remove('active');
+  });
+  
+  // Tutup overlay jika ada
+  const overlay = document.querySelector('.sidebar-overlay');
+  if (overlay) {
+    overlay.classList.remove('active');
+  }
+}
+
+// Fungsi untuk menangani dropdown di navbar desktop pada mobile
+document.addEventListener('DOMContentLoaded', function() {
+  // Untuk dropdown di navbar desktop pada tampilan mobile
+  const dropdownToggles = document.querySelectorAll('.dropdown > a');
+  
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const dropdown = this.parentElement;
+        dropdown.classList.toggle('active');
+        
+        // Tutup dropdown lainnya
+        document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            otherDropdown.classList.remove('active');
+          }
+        });
+      }
+    });
+  });
+  
+  // Tutup dropdown saat klik di luar
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    }
+  });
+});

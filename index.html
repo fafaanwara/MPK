@@ -54,10 +54,30 @@
             <i class="fas fa-info-circle"></i>
             <span>Tentang</span>
           </a>
-          <a href="#bp" class="nav-item" onclick="closeSidebar()">
-            <i class="fas fa-cogs"></i>
-            <span>Buku Program unggulan</span>
-          </a>
+
+          <!-- Dropdown untuk Buku Panduan di Sidebar -->
+          <div class="dropdown-sidebar">
+            <div class="nav-item dropdown-toggle" onclick="toggleDropdown(this)">
+              <i class="fas fa-book"></i>
+              <span>Buku Panduan</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+            <div class="dropdown-content-sidebar">
+              <a href="bp/bpsuaraaspirasi.html" class="dropdown-item" onclick="closeSidebar()">
+                <i class="fas fa-file-alt"></i>
+                <span>Suara Aspirasi</span>
+              </a>
+              <a href="bp/bppodcast.html" class="dropdown-item" onclick="closeSidebar()">
+                <i class="fas fa-podcast"></i>
+                <span>Podcast Ekstra Talks</span>
+              </a>
+              <a href="bp/bpds.html" class="dropdown-item" onclick="closeSidebar()">
+                <i class="fas fa-digital-tachograph"></i>
+                <span>Digital Storytelling</span>
+              </a>
+            </div>
+          </div>
+
           <a href="#layanan" class="nav-item" onclick="closeSidebar()">
             <i class="fas fa-cogs"></i>
             <span>Layanan</span>
@@ -74,6 +94,9 @@
       </nav>
     </div>
 
+      <!-- Dropdown untuk Buku Panduan di Navbar Desktop -->
+
+
     <ul id="navMenu">
       <li><a href="#hero"><i class="fa-solid fa-house"></i> Beranda</a></li>
       <li><a href="portal.html"><i class="fas fa-envelope"></i> Portal aspirasi</a></li>
@@ -82,7 +105,9 @@
       <li><a href="#galeri"><i class="fa-solid fa-image"></i> Galeri</a></li>
       <li><a href="#kontak"><i class="fas fa-envelope"></i> Kontak</a></li>
     </ul>
+    
   </nav>
+
 
   <!-- HERO -->
   <section id="hero" class="hero">
@@ -239,13 +264,6 @@
           </div>
         </div>
         <div class="galeri-slide">
-          <img src="image/galeri (2).jpg" alt="Berbagi Takjil">
-          <div class="galeri-caption">
-            <h2>Berbagi Takjil</h2>
-            <p>Ramadhan berbagi</p>
-          </div>
-        </div>
-        <div class="galeri-slide">
           <img src="image/galeri (3).jpg" alt="Debat Pilketos">
           <div class="galeri-caption">
             <h2>Debat Pilketos</h2>
@@ -257,6 +275,13 @@
           <div class="galeri-caption">
             <h2>Go Green</h2>
             <p>Hidupkan Bumi</p>
+          </div>
+        </div>
+        <div class="galeri-slide">
+          <img src="image/galeri (2).jpg" alt="Berbagi Takjil">
+          <div class="galeri-caption">
+            <h2>Berbagi Takjil</h2>
+            <p>Ramadhan berbagi</p>
           </div>
         </div>
         <div class="galeri-slide">

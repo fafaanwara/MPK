@@ -661,7 +661,7 @@
     .galeri-carousel {
       position: relative;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
       overflow: hidden;
       border-radius: 20px;
@@ -681,8 +681,8 @@
 
     .galeri-slide {
       position: absolute;
-      width: 700px;
-      height: 70%;
+      width: 45%;
+      height: 80%;
       transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       border-radius: 15px;
       overflow: hidden;
@@ -702,6 +702,7 @@
     .galeri-slide:hover img {
       transform: scale(1.05);
     }
+
 
     .galeri-slide.active {
       opacity: 1;
@@ -978,6 +979,7 @@
 
     .double-logo img {
       height: 85px;
+      background-color: #ffffffab;
       border-radius: 12px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -1189,6 +1191,139 @@
       z-index: -1;
     }
 
+    /* Dropdown Styles untuk Navbar Desktop */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 200px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      padding: 10px 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(5px);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      color: var(--hitam);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(141, 94, 94, 0.1);
+      border-left-color: var(--merahGelap);
+      padding-left: 25px;
+    }
+
+    .dropdown-item i {
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Dropdown Styles untuk Sidebar Mobile */
+    .dropdown-sidebar {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dropdown-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-sidebar.active .dropdown-icon {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-content-sidebar {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      margin-left: 20px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .dropdown-sidebar.active .dropdown-content-sidebar {
+      max-height: 300px;
+    }
+
+    .dropdown-content-sidebar .dropdown-item {
+      padding: 12px 20px;
+      border-left: 3px solid transparent;
+      color: var(--hitam);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-content-sidebar .dropdown-item:hover {
+      background-color: rgba(255, 1, 1, 0.1);
+      border-left-color: var(--primary-color);
+      padding-left: 25px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        transform: none;
+      }
+
+      .dropdown.active .dropdown-menu {
+        max-height: 300px;
+      }
+
+      .dropdown-item {
+        padding: 10px 15px 10px 40px;
+      }
+    }
+
     /* HERO IMAGE PRELOAD - DISEMBUNYIKAN */
     .hero-image-preload {
       display: none;
@@ -1231,6 +1366,7 @@
       transition: transform 0.3s ease;
       transform: translateX(-100%);
       padding: 0;
+      align-items: baseline;
     }
 
     .sidebar.active {
@@ -1245,8 +1381,6 @@
       margin: 1rem;
       width: 100%;
       margin-left: auto;
-      margin-top: 0;
-      top: 0;
     }
 
     .sidebar-logo {
@@ -1281,7 +1415,7 @@
     }
 
     .nav-menu {
-      padding: 20px 0;
+      padding: px 0;
     }
 
     .nav-item {
