@@ -568,14 +568,31 @@
         padding: 1rem;
       }
 
-      .back-button {
-        top: 15px;
-        left: 15px;
+      .btn-back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: var(--merahGelap);
+        color: var(--white);
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
       }
 
-      .btn-back {
-        padding: 10px 16px;
-        font-size: 0.9rem;
+      .btn-back:hover {
+        background: rgba(231, 76, 60, 1);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .btn-back i {
+        margin: 10px;
+        margin-left: 0px;
       }
 
       .judul {
