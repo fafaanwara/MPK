@@ -1,20 +1,31 @@
 {
-  "name": "MPK SMKN 1 DUKUHTURI",
-  "short_name": "MPK SMEKAR",
-  "start_url": "/",
+  "id": "/",
+  "name": "MPK SMKN 1 Dukuhturi",
+  "short_name": "MPK Smekar",
+  "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1a237e",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/image/logompkbgrmv.jpg",
+      "src": "/image/logompkbgrmv-192.png",
       "sizes": "192x192",
-      "type": "image/jpg"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/image/logompkbgrmv.jpg",
+      "src": "/image/logompkbgrmv-512.png",
       "sizes": "512x512",
-      "type": "image/jpg"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/image/logompkbgrmv-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
