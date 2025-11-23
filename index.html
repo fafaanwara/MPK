@@ -10,7 +10,10 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400&display=swap"
     rel="stylesheet">
-  <link rel="icon" type="img/jpg" href="image/logompk.jpg">
+  <link rel="icon" type="img/jpg" href="image/logompkbgrmv.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1a237e">
+
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -95,7 +98,7 @@
       </nav>
     </div>
 
-      <!-- Dropdown untuk Buku Panduan di Navbar Desktop -->
+    <!-- Dropdown untuk Buku Panduan di Navbar Desktop -->
 
 
     <ul id="navMenu">
@@ -106,7 +109,7 @@
       <li><a href="#galeri"><i class="fa-solid fa-image"></i> Galeri</a></li>
       <li><a href="#kontak"><i class="fas fa-envelope"></i> Kontak</a></li>
     </ul>
-    
+
   </nav>
 
 
@@ -481,6 +484,9 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <script src="js/main.js">
+    if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
   </script>
 </body>
 

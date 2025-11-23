@@ -1,0 +1,20 @@
+{
+  "name": "MPK SMKN 1 DUKUHTURI",
+  "short_name": "MPK SMEKAR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a237e",
+  "icons": [
+    {
+      "src": "/image/logompkbgrmv.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "/image/logompkbgrmv.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ]
+}
