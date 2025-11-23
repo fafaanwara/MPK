@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+
+    { "source": "/beranda", "destination": "/index.html" },
+    { "source": "/form", "destination": "/form.html" },
+    { "source": "/portal", "destination": "/portal.html" },
+
+    { "source": "/bp/ds", "destination": "/bp/bpds.html" },
+    { "source": "/bp/podcast", "destination": "/bp/bppodcast.html" },
+    { "source": "/bp/suara", "destination": "/bp/bpsuara.html" }
+  ]
+}
