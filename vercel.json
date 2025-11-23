@@ -4,10 +4,17 @@
 
     { "source": "/beranda", "destination": "/index.html" },
     { "source": "/form", "destination": "/form.html" },
-    { "source": "/portal", "destination": "/portal.html" },
+    { "source": "/portalaspirasi", "destination": "/portal.html" },
 
-    { "source": "/bp/ds", "destination": "/bp/bpds.html" },
+    { "source": "/bp/digitalstorytelling", "destination": "/bp/bpds.html" },
     { "source": "/bp/podcast", "destination": "/bp/bppodcast.html" },
-    { "source": "/bp/suara", "destination": "/bp/bpsuara.html" }
+    { "source": "/bp/suaraaspirasi", "destination": "/bp/bpsuara.html" },
+
+    { "source": "/beranda", "destination": "/index.html#hero" },
+    { "source": "/tentang", "destination": "/index.html#tentang" },
+    { "source": "/layanan", "destination": "/index.html#layanan" },
+    { "source": "/galeri", "destination": "/index.html#galeri" },
+    { "source": "/kontak", "destination": "/index.html#kontak" }
   ]
 }
+
