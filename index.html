@@ -584,16 +584,21 @@
       navigator.serviceWorker.register("/sw.js");
     }
 
-    // Tampilkan splash 2.2 detik lalu hilangkan
-    setTimeout(() => {
+    window.addEventListener("load", () => {
       const splash = document.getElementById("splash");
-      splash.classList.add("fade-out");
+      const app = document.getElementById("app");
 
+      // kasih delay minimal (1 detik) biar smooth
       setTimeout(() => {
-        splash.style.display = "none";
-        document.getElementById("app").style.display = "block";
-      }, 700); // waktu animasi fade-out
-    }, 2200); // berapa lama splash tampil
+        splash.classList.add("fade-out");
+
+        // setelah animasi hilang, tampilkan halaman
+        setTimeout(() => {
+          splash.style.display = "none";
+          app.style.display = "block";
+        }, 600); // durasi fadeOut 0.7s
+      }, 1000);
+    });
   </script>
 </body>
 
