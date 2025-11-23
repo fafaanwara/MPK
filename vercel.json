@@ -8,7 +8,7 @@
 
     { "source": "/bp/digitalstorytelling", "destination": "/bp/bpds.html" },
     { "source": "/bp/podcast", "destination": "/bp/bppodcast.html" },
-    { "source": "/bp/suaraaspirasi", "destination": "/bp/bpsuara.html" },
+    { "source": "/bp/suaraaspirasi", "destination": "/bp/bpsuaraaspirasi.html" },
 
     { "source": "/beranda", "destination": "/index.html#hero" },
     { "source": "/tentang", "destination": "/index.html#tentang" },
